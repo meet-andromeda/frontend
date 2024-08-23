@@ -1,0 +1,45 @@
+
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "finance.arch.dev-app",
+      "sha256_cert_fingerprints": [
+        "F5:BB:BF:37:76:F3:DB:7C:C2:A1:E1:E1:B2:DD:5E:DD:81:7C:E1:1F:F9:F4:54:8B:C9:EA:7B:02:35:83:CD:A1",
+        "2E:5E:49:F9:9B:48:C3:FD:1D:5A:E0:1F:59:46:3B:6C:3F:F8:D4:17:F9:33:E3:04:B0:EE:18:44:E3:A1:47:CC",
+        "4C:72:31:C9:5C:76:9A:D1:12:9A:CC:93:BF:E7:58:81:E8:44:6B:A8:F6:ED:CB:CC:43:75:19:11:8B:2B:F8:50"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "finance.arch.sandbox",
+      "sha256_cert_fingerprints": [
+        "F5:BB:BF:37:76:F3:DB:7C:C2:A1:E1:E1:B2:DD:5E:DD:81:7C:E1:1F:F9:F4:54:8B:C9:EA:7B:02:35:83:CD:A1",
+        "2E:5E:49:F9:9B:48:C3:FD:1D:5A:E0:1F:59:46:3B:6C:3F:F8:D4:17:F9:33:E3:04:B0:EE:18:44:E3:A1:47:CC",
+        "4C:72:31:C9:5C:76:9A:D1:12:9A:CC:93:BF:E7:58:81:E8:44:6B:A8:F6:ED:CB:CC:43:75:19:11:8B:2B:F8:50"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "finance.arch.app",
+      "sha256_cert_fingerprints": [
+        "F5:BB:BF:37:76:F3:DB:7C:C2:A1:E1:E1:B2:DD:5E:DD:81:7C:E1:1F:F9:F4:54:8B:C9:EA:7B:02:35:83:CD:A1",
+        "2E:5E:49:F9:9B:48:C3:FD:1D:5A:E0:1F:59:46:3B:6C:3F:F8:D4:17:F9:33:E3:04:B0:EE:18:44:E3:A1:47:CC",
+        "4C:72:31:C9:5C:76:9A:D1:12:9A:CC:93:BF:E7:58:81:E8:44:6B:A8:F6:ED:CB:CC:43:75:19:11:8B:2B:F8:50"
+      ]
+    }
+  }
+]

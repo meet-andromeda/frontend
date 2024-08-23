@@ -1,0 +1,12 @@
+bail: true,
+checkLeaks: true,
+extension: ['ts', 'tsx']
+spec:
+  - 'src/**/*.test.ts'
+  - 'src/**/*.test.tsx'
+require:
+  - 'esbuild-register'
+  - 'ignore-styles'
+  - './mocha-hooks.js'
+  - 'tsconfig-paths/register'
+  - 'global-jsdom/register'

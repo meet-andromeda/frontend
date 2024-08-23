@@ -1,0 +1,28 @@
+const colors = {
+  electricGreen: '#00CC00',
+  islamicGreen: '#0EA70E',
+  white: '#FCFEFF',
+  lightGray: '#F4F6F8',
+  lotion: '#FBFBFB',
+  ghostWhite: '#F8F9FA',
+  brightGray: '#EDEFF2',
+  platinum: '#DEE2E6',
+  cadetBlue: '#ADB5BD',
+  auroMetalSaurus: '#6C757D',
+  darkGunmetal: '#212529',
+  raisinBlack: '#262626',
+  palominoGold: '#DAB006',
+  coralRed: '#FF4446',
+  orangeRed: '#FF4D4F',
+  apple: '#5CC93B',
+  black: '#000000',
+  diamond: '#BBE0FD',
+  dodgerBlue: '#1890FF',
+  earlsGreen: '#BCAD21',
+  crocusTint: '#FDF2C6',
+  endeavour: '#1D4592',
+  frenchRose: '#EC5893',
+  malibu: '#4EC5E7',
+} as const;
+
+export default colors;

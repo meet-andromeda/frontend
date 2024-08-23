@@ -1,0 +1,3 @@
+type Address0x = `0x${string}`;
+
+export default Address0x;

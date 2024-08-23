@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src",
+    ".eslintrc.js",
+    "babel.config.js",
+    "babel-register.js",
+    "mocha-hooks.js",
+    "nyc.config.js",
+    ".storybook/preview.tsx",
+    ".storybook/main.ts",
+    "vite.config.js",
+    "public/firebase-messaging-sw.js",
+    "public/offline-sw.js",
+    "global.d.ts"
+  ]
+}

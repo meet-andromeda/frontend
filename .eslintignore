@@ -1,0 +1,17 @@
+# assets
+*.css
+*.svg
+
+# nyc (test coverage)
+coverage
+
+# mocha
+!.mocharc.js
+
+# storybook
+!.storybook
+
+# others
+build
+dist
+public
