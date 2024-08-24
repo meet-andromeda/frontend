@@ -5,8 +5,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { useAccount } from 'wagmi';
+import { useAccount, useBalance } from 'wagmi';
 import shortenAddress from 'web3/helpers/shorten-address';
+// import useGetUserData from 'hooks/use-get-user-data';
+import { HorizontalSpace } from 'components/spacing';
+import useGetErc20Balance from 'hooks/use-get-erc20-balance';
 
 const StyledButton = styled(Button)({
   marginLeft: '10px',
@@ -22,6 +25,23 @@ export default function ButtonAppBar(): any {
   const {
     address,
   } = useAccount();
+  /* const data = useGetUserData(
+    address || '',
+  ); */
+
+  const {
+    balance,
+  } = useGetErc20Balance({
+    userAddress: address,
+  });
+
+  const { data: balanceDatas } = useBalance({
+    address,
+  });
+
+  const formattedMaticBalance = Number(balanceDatas?.value) / (10 ** 18);
+  const displayedMaticBalance = formattedMaticBalance.toFixed(2);
+
   return (
     <Box sx={{ flexGrow: 1, color: 'white' }}>
       <AppBar position="static">
@@ -32,7 +52,27 @@ export default function ButtonAppBar(): any {
           <Typography>
             Acme Protocol
           </Typography>
-          <StyledButton>
+          <StyledButton
+            onClick={() => window.open(`https://polygonscan.com/address/${address}`, '_blank')}
+          >
+            {shortenAddress(address || '')}
+          </StyledButton>
+          <HorizontalSpace size="M" />
+          <Typography>
+            Circle Wallet balance:
+            {' '}
+            {balance}
+            {' '}
+            USDC
+            |
+            {' '}
+            {displayedMaticBalance}
+            {' '}
+            MATIC
+          </Typography>
+          <StyledButton
+            onClick={() => window.open(`https://polygonscan.com/address/${address}`, '_blank')}
+          >
             {shortenAddress(address || '')}
           </StyledButton>
         </Toolbar>
