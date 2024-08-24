@@ -1,4 +1,5 @@
 import { Box, styled } from '@mui/material';
+import { useState } from 'react';
 import { ActionCard } from 'components/cards';
 import { HorizontalDivider } from 'components/dividers';
 import ChevronDownIcon from 'components/icons/chevron-down-icon';
@@ -6,6 +7,7 @@ import { VerticalSpace } from 'components/spacing';
 import { Body, Subheading } from 'components/typographies';
 import { useModalContext } from 'contexts/modal-context';
 import AppNameSelection from './app-name-selection';
+import { TriggerInformation } from 'pages/workflow-create-page/types';
 
 const Container = styled('div')`
   width: 40%;
@@ -45,8 +47,16 @@ const ButtonTitle = styled(Body)`
   width: fit-content;
 `;
 
-function TriggerConfiguration() : JSX.Element{
-  const { showModal } = useModalContext();
+interface TriggerConfigurationProps {
+  triggerInformation: TriggerInformation;
+  setTriggerInformation: (triggerInformation: TriggerInformation) => void;
+}
+
+function TriggerConfiguration({
+  triggerInformation,
+  setTriggerInformation,
+}: TriggerConfigurationProps) : JSX.Element{
+  const { showModal, hideModal } = useModalContext();
   return (
     <Container>
       <Header>
@@ -60,11 +70,14 @@ function TriggerConfiguration() : JSX.Element{
           <VerticalSpace size="S" />
           <Button onClick={() => {
             showModal({
-              component: <AppNameSelection />,
+              component: <AppNameSelection
+                hideModal={hideModal}
+                setTriggerInformation={setTriggerInformation}
+              />,
             });
           }}
           >
-            <ButtonTitle text="Select App" variant="medium" />
+            <ButtonTitle text={triggerInformation.name || 'Select App'} variant="medium" />
             <ChevronDownIcon />
           </Button>
         </ButtonContainer>

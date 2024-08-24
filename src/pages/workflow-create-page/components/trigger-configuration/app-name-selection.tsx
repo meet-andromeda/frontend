@@ -5,6 +5,7 @@ import { HorizontalSpace, VerticalSpace } from 'components/spacing';
 import { Body, Subheading } from 'components/typographies';
 import defaultLogo from 'assets/images/default-logo.svg';
 import andromedaLogo from 'assets/images/andromeda-logo.svg';
+import { TriggerInformation } from 'pages/workflow-create-page/types';
 
 const Container = styled(FormCard)`
   display: flex;
@@ -52,7 +53,17 @@ const Logo = styled('img')`
   padding: 0;  
 `;
 
-function AppNameSelection(): JSX.Element {
+interface AppNameSelectionProps {
+  hideModal: () => void;
+  triggerInformation: TriggerInformation;
+  setTriggerInformation: (triggerInformation: TriggerInformation) => void;
+}
+
+function AppNameSelection({
+  hideModal,
+  triggerInformation,
+  setTriggerInformation,
+}: AppNameSelectionProps): JSX.Element {
   const web2Apps = [
     {
       name: 'Google Drive',
@@ -157,7 +168,11 @@ function AppNameSelection(): JSX.Element {
           {
             web2Apps.map((web2App) => (
               <CardContainer key={web2App.name}>
-                <Card onClick={() => {}}>
+                <Card onClick={() => {
+                  hideModal();
+                  setTriggerInformation({ ...triggerInformation, name: web2App.name });
+                }}
+                >
                   {web2App.logo}
                   <HorizontalSpace size="S" />
                   <Body text={web2App.name} variant="regular" />
@@ -173,7 +188,11 @@ function AppNameSelection(): JSX.Element {
           {
             web3Apps.map((web3App) => (
               <CardContainer key={web3App.name}>
-                <Card onClick={() => {}}>
+                <Card onClick={() => {
+                  hideModal();
+                  setTriggerInformation({ ...triggerInformation, name: web3App.name });
+                }}
+                >
                   {web3App.logo}
                   <HorizontalSpace size="S" />
                   <Body text={web3App.name} variant="regular" />
@@ -189,7 +208,11 @@ function AppNameSelection(): JSX.Element {
           {
             dev1Apps.map((dev1App) => (
               <CardContainer key={dev1App.name}>
-                <Card onClick={() => {}}>
+                <Card onClick={() => {
+                  hideModal();
+                  setTriggerInformation({ ...triggerInformation, name: dev1App.name });
+                }}
+                >
                   {dev1App.logo}
                   <HorizontalSpace size="S" />
                   <Body text={dev1App.name} variant="regular" />
@@ -203,7 +226,11 @@ function AppNameSelection(): JSX.Element {
           {
             dev2Apps.map((dev2App) => (
               <CardContainer key={dev2App.name}>
-                <Card onClick={() => {}}>
+                <Card onClick={() => {
+                  hideModal();
+                  setTriggerInformation({ ...triggerInformation, name: dev2App.name });
+                }}
+                >
                   {dev2App.logo}
                   <HorizontalSpace size="S" />
                   <Body text={dev2App.name} variant="regular" />
