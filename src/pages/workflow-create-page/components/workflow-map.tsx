@@ -45,6 +45,7 @@ function WorkflowMap({
   const CustomNode = useCallback(({ id, data }: CustomNodeProps) => (
     <Box
       onClick={() => {
+        console.log(id);
         setNodeId(id.toString());
       }}
       className="react-flow__node-default"
@@ -94,9 +95,9 @@ function WorkflowMap({
 
       if (targetIsPane) {
         // we need to remove the wrapper bounds, in order to get the correct position
-        const id = nodes[nodes.length - 1].id + 1;
+        const id = Number(nodes[nodes.length - 1].id) + 1;
         const newNode = {
-          id,
+          id: id.toString(),
           type: 'custom',
           position: {
             x: 0,
@@ -106,9 +107,9 @@ function WorkflowMap({
         };
 
         const newEdge: Edge = {
-          id,
+          id: id.toString(),
           source: connectingNodeId.current,
-          target: id,
+          target: id.toString(),
         };
 
         setNodes((nds) => nds.concat(newNode));
