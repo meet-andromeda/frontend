@@ -137,7 +137,13 @@ function WorkflowMap({
         fitViewOptions={{ padding: 2 }}
         nodeOrigin={[0.5, 0]}
       >
-        <Background color="#ccc" variant={BackgroundVariant.Dots} />
+        <Background
+          color="#8A959E"
+          variant={BackgroundVariant.Dots}
+          style={{
+            backgroundColor: '#F5F4F4',
+          }}
+        />
         <Controls />
         <MiniMap />
       </ReactFlow>
