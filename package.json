@@ -58,7 +58,8 @@
     "test:watch": "NODE_ENV=test mocha --watch",
     "test:coverage": "NODE_ENV=test c8 mocha",
     "lint": "eslint './**/*.{js,jsx,ts,tsx}'",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "deploy": "npm run build:development && aws s3 sync build/ s3://meet-andromeda-application"
   },
   "engines": {
     "node": ">=18.0.0"
