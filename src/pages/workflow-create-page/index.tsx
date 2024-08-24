@@ -1,5 +1,6 @@
 import { styled } from '@mui/material';
-import { TriggerConfiguration, WorkflowMap } from './components';
+import { ConfigurationSection, WorkflowMap } from './components';
+import { useState } from 'react';
 
 const Container = styled('div')`
   display: flex;
@@ -7,10 +8,15 @@ const Container = styled('div')`
 `;
 
 function WorkflowCreatePage() {
+  const [nodeId, setNodeId] = useState<string | undefined>(undefined);
   return (
     <Container>
-      <WorkflowMap />
-      <TriggerConfiguration />
+      <WorkflowMap
+        setNodeId={setNodeId}
+      />
+      <ConfigurationSection
+        nodeId={nodeId}
+      />
     </Container>
   );
 }

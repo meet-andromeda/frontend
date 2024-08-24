@@ -8,6 +8,9 @@ import {
   useNodesState,
   addEdge,
   Controls,
+  Handle,
+  Position,
+  Node,
 } from '@xyflow/react';
 import { useCallback, useRef } from 'react';
 
@@ -21,16 +24,38 @@ const Container = styled('div')`
   border: 0.5rem solid #ddd;
 `;
 
-const nodeTypes = {
-  custom: CustomNode,
-};
 
-function WorkflowMap() {
+interface WorkflowMapProps {
+  setNodeId: (id: string) => void;
+}
+
+function WorkflowMap({
+  setNodeId
+}: WorkflowMapProps) {
+  const CustomNode = ({ data }: {data: Node}) => {
+    return (
+      <div
+        onClick={() => {
+          setNodeId(data.id.toString())
+        }}
+        className="react-flow__node-default"
+        style={{ cursor: 'pointer', }}>
+        {data.label}
+        <Handle type="target" position={Position.Top} className="react-flow__handle react-flow__handle-top" />
+        <Handle type="source" position={Position.Bottom} className="react-flow__handle react-flow__handle-bottom" />
+      </div>
+      
+    );
+  };
+
+  const nodeTypes = {
+    custom: CustomNode,
+  };
   const initialNodes = [
     {
       id: '0',
       type: 'custom',
-      data: { label: 'Trigger' },
+      data: { label: 'Trigger', id: '0' },
       position: { x: 0, y: 50 },
     },
   ];
@@ -61,7 +86,6 @@ function WorkflowMap() {
 
       if (targetIsPane) {
         // we need to remove the wrapper bounds, in order to get the correct position
-        const id = getId();
         const newNode = {
           id: nodes[nodes.length-1].id + 1,
           type: 'custom',
@@ -69,7 +93,7 @@ function WorkflowMap() {
             x: 0,
             y: nodes[nodes.length-1].position.y + 100,
           },
-          data: { label: 'Action' },
+          data: { label: 'Action', id: nodes[nodes.length-1].id + 1 },
         };
 
         setNodes((nds) => nds.concat(newNode));

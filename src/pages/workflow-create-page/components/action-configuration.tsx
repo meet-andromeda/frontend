@@ -44,11 +44,11 @@ const ButtonTitle = styled(Body)`
   width: fit-content;
 `
 
-function TriggerConfiguration () {
+function ActionConfiguration () {
   return (
     <Container>
       <Header>
-        <Subheading variant="regular" text="New Trigger"/>
+        <Subheading variant="regular" text="⚡️ New Action"/>
         <Body variant="regular" text="SETUP > CONFIGURE > TEST"/>
       </Header>
       <HorizontalDivider />
@@ -84,4 +84,4 @@ function TriggerConfiguration () {
   )
 }
 
-export default TriggerConfiguration
+export default ActionConfiguration
