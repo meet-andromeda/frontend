@@ -2,6 +2,21 @@ import { styled } from '@mui/material';
 import { TriggerInformation } from '../types';
 import ActionConfiguration from './action-configuration';
 import TriggerConfiguration from './trigger-configuration';
+import andromedaLogo from 'assets/images/andromeda-logo.svg';
+
+const LogoContainer = styled('div')`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  flex-direction: column;
+`;
+
+const Logo = styled('img')`
+  width: 20rem;
+  margin: 0;
+  padding: 0;  
+`;
 
 const Container = styled('div')`
   height: 90vh;
@@ -21,9 +36,9 @@ function ConfigurationSection({
 }: ConfigurationSectionProps): JSX.Element {
   if (!nodeId) {
     return (
-      <Container>
-        Please select a node to configure
-      </Container>
+      <LogoContainer>
+        <Logo src={andromedaLogo} />
+      </LogoContainer>
     );
   }
 

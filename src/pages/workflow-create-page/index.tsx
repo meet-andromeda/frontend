@@ -49,7 +49,6 @@ function WorkflowCreatePage(): JSX.Element {
       {banner}
       <ButtonAppBar />
       <Container>
-
         <WorkflowMap
           setNodeId={setNodeId}
         />
@@ -59,7 +58,6 @@ function WorkflowCreatePage(): JSX.Element {
           setTriggerInformation={setTriggerInformation}
         />
       </Container>
-
     </StyledBox>
   );
 }
