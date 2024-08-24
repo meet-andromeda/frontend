@@ -9,7 +9,10 @@ interface SecondaryButtonProps {
   isDisabled?: boolean;
 }
 
-const StyledButton = styled(Button)``;
+const StyledButton = styled(Button)`
+  color: #3D4E6A;
+  border-color: #3D4E6A;
+`;
 
 function SecondaryButton({
   children,

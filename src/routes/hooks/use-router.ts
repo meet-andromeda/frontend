@@ -56,6 +56,10 @@ function useRouter(): UseRouterResponse {
       route: routes.walletConnection,
       shouldReplaceInHistory: params.shouldReplaceInHistory,
     }),
+    goToWorkflowCreatePage: (params = {}) => redirectTo({
+      route: routes.workflow,
+      shouldReplaceInHistory: params.shouldReplaceInHistory,
+    }),
     goToPreviousPage: (params = {}) => redirectTo({
       route: previousRoute,
       shouldReplaceInHistory: false,
