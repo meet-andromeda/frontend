@@ -72,6 +72,7 @@ function TriggerConfiguration({
             showModal({
               component: <AppNameSelection
                 hideModal={hideModal}
+                triggerInformation={triggerInformation}
                 setTriggerInformation={setTriggerInformation}
               />,
             });
