@@ -3,7 +3,7 @@ import {
   http,
 } from 'wagmi';
 import { connectorsForWallets, getDefaultWallets } from '@rainbow-me/rainbowkit';
-import { mainnet, polygon } from 'viem/chains';
+import { mainnet, polygon, polygonZkEvm } from 'viem/chains';
 import { networks, rpcUrls } from './constants';
 
 const { wallets } = getDefaultWallets({
@@ -21,7 +21,7 @@ const config = createConfig({
   transports: {
     [mainnet.id]: http(rpcUrls.alchemy.ethereum),
     [polygon.id]: http(rpcUrls.alchemy.polygon),
-
+    [polygonZkEvm.id]: http(rpcUrls.alchemy.polygonZkEvm),
   },
   connectors: [
     ...connectors,
