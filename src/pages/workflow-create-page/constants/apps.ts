@@ -1,5 +1,6 @@
 import defaultLogo from 'assets/images/default-logo.svg';
 import andromedaLogo from 'assets/images/andromeda-logo.svg';
+import discordLogo from 'assets/images/discord-logo.svg';
 
 const web2Apps = [
   {
@@ -20,7 +21,7 @@ const web2Apps = [
   },
   {
     name: 'Discord',
-    logo: defaultLogo,
+    logo: discordLogo,
   },
   {
     name: 'Plaid',
