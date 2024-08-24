@@ -1,6 +1,6 @@
 import { styled } from '@mui/material';
-import { TriggerInformation } from '../types';
-import ActionConfiguration from './action-configuration';
+import { MintActionInformation, TriggerInformation } from '../types';
+import MintActionConfiguration from './mint-action-configuration';
 import TriggerConfiguration from './trigger-configuration';
 import andromedaLogo from 'assets/images/andromeda-logo.svg';
 
@@ -21,13 +21,17 @@ const Logo = styled('img')`
 interface ConfigurationSectionProps {
   nodeId?: string;
   triggerInformation: TriggerInformation;
+  mintActionInformation: MintActionInformation;
   setTriggerInformation: (triggerInformation: TriggerInformation) => void;
+  setMintActionInformation: (MintActionInformation: MintActionInformation) => void;
 }
 
 function ConfigurationSection({
   nodeId,
   triggerInformation,
+  mintActionInformation,
   setTriggerInformation,
+  setMintActionInformation,
 }: ConfigurationSectionProps): JSX.Element {
   if (!nodeId) {
     return (
@@ -48,8 +52,19 @@ function ConfigurationSection({
     );
   }
 
+  if (nodeId === '1') {
+    return (
+      <MintActionConfiguration
+        mintActionInformation={mintActionInformation}
+        setMintActionInformation={setMintActionInformation}
+      />
+    );
+  }
+
   return (
-    <ActionConfiguration />
+    <LogoContainer>
+      <Logo src={andromedaLogo} />
+    </LogoContainer>
   );
 }
 

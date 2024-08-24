@@ -4,7 +4,7 @@ import {
 } from '@mui/material';
 import { useAccount } from 'wagmi';
 import { ConfigurationSection, WorkflowMap } from './components';
-import { TriggerInformation } from './types';
+import { MintActionInformation, TriggerInformation } from './types';
 import { useIsAdmin } from 'web3/andromeda-peripherals';
 import ButtonAppBar from './components/app-bar';
 
@@ -22,6 +22,7 @@ const StyledBox = styled(Box)`
 function WorkflowCreatePage(): JSX.Element {
   const [nodeId, setNodeId] = useState<string | undefined>(undefined);
   const [triggerInformation, setTriggerInformation] = useState<TriggerInformation>({});
+  const [mintActionInformation, setMintActionInformation] = useState<MintActionInformation>({});
   const {
     address,
   } = useAccount();
@@ -56,6 +57,8 @@ function WorkflowCreatePage(): JSX.Element {
           nodeId={nodeId}
           triggerInformation={triggerInformation}
           setTriggerInformation={setTriggerInformation}
+          mintActionInformation={mintActionInformation}
+          setMintActionInformation={setMintActionInformation}
         />
       </Container>
     </StyledBox>

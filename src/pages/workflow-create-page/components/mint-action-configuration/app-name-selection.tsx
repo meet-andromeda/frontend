@@ -3,7 +3,7 @@ import { FormCard, ListCard } from 'components/cards';
 import { HorizontalDivider } from 'components/dividers';
 import { HorizontalSpace, VerticalSpace } from 'components/spacing';
 import { Body, Subheading } from 'components/typographies';
-import { TriggerInformation } from 'pages/workflow-create-page/types';
+import { MintActionInformation } from 'pages/workflow-create-page/types';
 import {
   web2Apps,
   web3Apps,
@@ -59,14 +59,14 @@ const Logo = styled('img')`
 
 interface AppNameSelectionProps {
   hideModal: () => void;
-  triggerInformation: TriggerInformation;
-  setTriggerInformation: (triggerInformation: TriggerInformation) => void;
+  mintActionInformation: MintActionInformation;
+  setMintActionInformation: (mintActionInformation: MintActionInformation) => void;
 }
 
 function AppNameSelection({
   hideModal,
-  triggerInformation,
-  setTriggerInformation,
+  mintActionInformation,
+  setMintActionInformation,
 }: AppNameSelectionProps): JSX.Element {
   return (
     <Container>
@@ -86,7 +86,7 @@ function AppNameSelection({
               <CardContainer key={web2App.name}>
                 <Card onClick={() => {
                   hideModal();
-                  setTriggerInformation({ ...triggerInformation, name: web2App.name });
+                  setMintActionInformation({ ...mintActionInformation, app: web2App.name });
                 }}
                 >
                   <Logo src={web2App.logo} />
@@ -106,7 +106,7 @@ function AppNameSelection({
               <CardContainer key={web3App.name}>
                 <Card onClick={() => {
                   hideModal();
-                  setTriggerInformation({ ...triggerInformation, name: web3App.name });
+                  setMintActionInformation({ ...mintActionInformation, app: web3App.name });
                 }}
                 >
                   {web3App.logo}
@@ -126,7 +126,7 @@ function AppNameSelection({
               <CardContainer key={dev1App.name}>
                 <Card onClick={() => {
                   hideModal();
-                  setTriggerInformation({ ...triggerInformation, name: dev1App.name });
+                  setMintActionInformation({ ...mintActionInformation, app: dev1App.name });
                 }}
                 >
                   {dev1App.logo}
@@ -144,7 +144,7 @@ function AppNameSelection({
               <CardContainer key={dev2App.name}>
                 <Card onClick={() => {
                   hideModal();
-                  setTriggerInformation({ ...triggerInformation, name: dev2App.name });
+                  setMintActionInformation({ ...mintActionInformation, app: dev2App.name });
                 }}
                 >
                   {dev2App.logo}
