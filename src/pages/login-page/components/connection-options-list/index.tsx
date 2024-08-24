@@ -30,10 +30,7 @@ function ConnectionOptionsList(): JSX.Element {
     <>
       <IntroductionContainer>
         <VerticalSpace size="XL" />
-        <VerticalSpace size="XL" />
-        <VerticalSpace size="S" />
       </IntroductionContainer>
-      <VerticalSpace size="M" />
       <ButtonsList>
         <ConnectOtherWalletsButton
           onClick={() => openWalletConnectionModal()}
