@@ -6,7 +6,7 @@ import {
 import { routes } from './config';
 
 const LoginPage = React.lazy(() => import(/* webpackChunkName: "LoginPage" */ 'pages/login-page'));
-const WorkflowCreatePage = React.lazy(() => import(/* webpackChunkName: "LoginPage" */ 'pages/workflow-create-page'));
+const WorkflowCreatePage = React.lazy(() => import(/* webpackChunkName: "WorkflowPage" */ 'pages/workflow-create-page'));
 
 const getComponent = (
   Component: React.LazyExoticComponent<() => JSX.Element | null>,

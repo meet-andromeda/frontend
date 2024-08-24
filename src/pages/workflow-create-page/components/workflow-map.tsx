@@ -1,6 +1,5 @@
-import { styled } from '@mui/material';
 import {
-  ReactFlow, 
+  ReactFlow,
   Background,
   BackgroundVariant,
   MiniMap,
@@ -8,45 +7,56 @@ import {
   useNodesState,
   addEdge,
   Controls,
-  Handle,
   Position,
-  Node,
+  Handle,
+  Connection,
+  OnConnectStartParams,
+  Edge,
 } from '@xyflow/react';
+import { Box, styled } from '@mui/material';
 import { useCallback, useRef } from 'react';
-
 import '@xyflow/react/dist/style.css';
 import '../css/index.css';
-import CustomNode from './custom-node';
 
-const Container = styled('div')`
-  width: 60vw;
+const Container = styled('div')<{
+  useCompletePage: boolean;
+}>`
+  width: ${(props) => (props.useCompletePage ? '100vw' : '60vw')};
   height: 100vh;
   border: 0.5rem solid #ddd;
 `;
-
 
 interface WorkflowMapProps {
   setNodeId: (id: string) => void;
 }
 
+interface NodeData {
+  label: string;
+}
+
+interface CustomNodeProps {
+  data: NodeData;
+  id: string;
+}
+
 function WorkflowMap({
-  setNodeId
-}: WorkflowMapProps) {
-  const CustomNode = ({ data }: {data: Node}) => {
-    return (
-      <div
-        onClick={() => {
-          setNodeId(data.id.toString())
-        }}
-        className="react-flow__node-default"
-        style={{ cursor: 'pointer', }}>
-        {data.label}
-        <Handle type="target" position={Position.Top} className="react-flow__handle react-flow__handle-top" />
-        <Handle type="source" position={Position.Bottom} className="react-flow__handle react-flow__handle-bottom" />
-      </div>
-      
-    );
-  };
+  setNodeId,
+}: WorkflowMapProps): JSX.Element {
+  const CustomNode = useCallback(({ id, data }: CustomNodeProps) => (
+    <Box
+      onClick={() => {
+        setNodeId(id.toString());
+      }}
+      className="react-flow__node-default"
+      style={{ cursor: 'pointer' }}
+    >
+      {data.label}
+      <Handle type="target" position={Position.Top} className="react-flow__handle react-flow__handle-top" />
+      <Handle type="source" position={Position.Bottom} className="react-flow__handle react-flow__handle-bottom" />
+    </Box>
+  ), [
+    setNodeId,
+  ]);
 
   const nodeTypes = {
     custom: CustomNode,
@@ -55,62 +65,65 @@ function WorkflowMap({
     {
       id: '0',
       type: 'custom',
-      data: { label: 'Trigger', id: '0' },
+      data: { label: 'Trigger' },
       position: { x: 0, y: 50 },
     },
   ];
-  const reactFlowWrapper = useRef(null);
-  const connectingNodeId = useRef(null);
+  const connectingNodeId = useRef<string | null>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
 
-  let id: number = 1;
-  const getId = () => `${id++}`;
-
-  const onConnect = useCallback((params: any) => {
+  const onConnect = useCallback((params: Connection) => {
     // reset the start node on connections
     connectingNodeId.current = null;
-    setEdges((eds) => addEdge(params, eds));
-  }, [nodes]);
+    setEdges((eds: Edge[]) => addEdge(params, eds));
+  }, [setEdges]);
 
-  const onConnectStart = useCallback((_, { nodeId }) => {
+  const onConnectStart = useCallback((
+    _: any,
+    { nodeId }: OnConnectStartParams,
+  ) => {
     connectingNodeId.current = nodeId;
   }, []);
 
   const onConnectEnd = useCallback(
     (event: any) => {
-      console.log(event)
       if (!connectingNodeId.current) return;
 
       const targetIsPane = event.target.classList.contains('react-flow__pane');
 
       if (targetIsPane) {
         // we need to remove the wrapper bounds, in order to get the correct position
+        const id = nodes[nodes.length - 1].id + 1;
         const newNode = {
-          id: nodes[nodes.length-1].id + 1,
+          id,
           type: 'custom',
           position: {
             x: 0,
-            y: nodes[nodes.length-1].position.y + 100,
+            y: nodes[nodes.length - 1].position.y + 100,
           },
-          data: { label: 'Action', id: nodes[nodes.length-1].id + 1 },
+          data: { label: 'Action' },
+        };
+
+        const newEdge: Edge = {
+          id,
+          source: connectingNodeId.current,
+          target: id,
         };
 
         setNodes((nds) => nds.concat(newNode));
-        setEdges((eds) =>
-          eds.concat({
-            id: nodes[nodes.length-1].id + 1,
-            source: connectingNodeId.current,
-            target: nodes[nodes.length-1].id + 1,
-          }),
-        );
+        setEdges((eds) => eds.concat(newEdge));
       }
     },
-    [nodes],
+    [
+      nodes,
+      setEdges,
+      setNodes,
+    ],
   );
 
   return (
-    <Container>
+    <Container useCompletePage={false}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -124,7 +137,7 @@ function WorkflowMap({
         fitViewOptions={{ padding: 2 }}
         nodeOrigin={[0.5, 0]}
       >
-        <Background color="#ccc" variant={BackgroundVariant.Dots}/>
+        <Background color="#ccc" variant={BackgroundVariant.Dots} />
         <Controls />
         <MiniMap />
       </ReactFlow>

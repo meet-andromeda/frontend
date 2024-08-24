@@ -1,14 +1,15 @@
+import { useState } from 'react';
 import { styled } from '@mui/material';
 import { ConfigurationSection, WorkflowMap } from './components';
-import { useState } from 'react';
 
 const Container = styled('div')`
-  display: flex;
-  flex-direction: row;
+display: flex;
+flex-direction: row;
 `;
 
-function WorkflowCreatePage() {
+function WorkflowCreatePage(): JSX.Element {
   const [nodeId, setNodeId] = useState<string | undefined>(undefined);
+
   return (
     <Container>
       <WorkflowMap
