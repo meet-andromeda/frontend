@@ -21,7 +21,7 @@ import '../css/index.css';
 const Container = styled('div')<{
   useCompletePage: boolean;
 }>`
-  width: ${(props) => (props.useCompletePage ? '100vw' : '60vw')};
+  width: ${(props) => (props.useCompletePage ? '100%' : '60%')};
   height: 100vh;
   border: 0.5rem solid #ddd;
 `;

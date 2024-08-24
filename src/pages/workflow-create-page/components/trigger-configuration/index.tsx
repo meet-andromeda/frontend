@@ -4,9 +4,11 @@ import { HorizontalDivider } from 'components/dividers';
 import ChevronDownIcon from 'components/icons/chevron-down-icon';
 import { VerticalSpace } from 'components/spacing';
 import { Body, Subheading } from 'components/typographies';
+import { useModalContext } from 'contexts/modal-context';
+import AppNameSelection from './app-name-selection';
 
 const Container = styled('div')`
-  width: 70vh;
+  width: 40%;
   align-items: center;
   text-align: center;
 `;
@@ -44,6 +46,7 @@ const ButtonTitle = styled(Body)`
 `;
 
 function TriggerConfiguration() : JSX.Element{
+  const { showModal } = useModalContext();
   return (
     <Container>
       <Header>
@@ -55,7 +58,12 @@ function TriggerConfiguration() : JSX.Element{
         <ButtonContainer>
           <Subheading variant="regular" text="App" />
           <VerticalSpace size="S" />
-          <Button onClick={() => console.log('ctm')}>
+          <Button onClick={() => {
+            showModal({
+              component: <AppNameSelection />,
+            });
+          }}
+          >
             <ButtonTitle text="Select App" variant="medium" />
             <ChevronDownIcon />
           </Button>

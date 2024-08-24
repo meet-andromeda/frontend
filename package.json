@@ -50,16 +50,15 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "host": "VITE_USE_HTTPS=true vite --host",
     "compile:watch": "tsc --noEmit --watch",
-    "start:development": "VITE_APP_VERSION=${npm_package_version} vite",
-    "build:development": "tsc && VITE_APP_VERSION=${npm_package_version} vite build --mode development",
-    "build:production": "tsc && VITE_APP_VERSION=${npm_package_version} vite build",
+    "start": "VITE_APP_VERSION=${npm_package_version} vite",
+    "build": "tsc && VITE_APP_VERSION=${npm_package_version} vite build --mode development",
     "preview": "vite preview",
     "test": "NODE_ENV=test mocha --exit",
     "test:watch": "NODE_ENV=test mocha --watch",
     "test:coverage": "NODE_ENV=test c8 mocha",
     "lint": "eslint './**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "npm run lint -- --fix",
-    "deploy": "npm run build:development && aws s3 sync build/ s3://meet-andromeda-application"
+    "deploy": "npm run build && aws s3 sync build/ s3://meet-andromeda-application"
   },
   "engines": {
     "node": ">=18.0.0"
