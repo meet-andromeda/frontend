@@ -1,4 +1,5 @@
-import { Box, Input, styled } from '@mui/material';
+import { Box, Typography, styled } from '@mui/material';
+import { useState } from 'react';
 import { ActionCard } from 'components/cards';
 import { HorizontalDivider } from 'components/dividers';
 import ChevronDownIcon from 'components/icons/chevron-down-icon';
@@ -8,6 +9,7 @@ import { useModalContext } from 'contexts/modal-context';
 import { MintActionInformation } from 'pages/workflow-create-page/types';
 import AppNameSelection from './app-name-selection';
 import { Selector } from 'components/select';
+import { Input } from 'components/inputs';
 
 const Container = styled('div')`
   width: 70vh;
@@ -58,6 +60,10 @@ function MintActionConfiguration({
   setMintActionInformation,
 }: MintActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
+  const [decodingAbi, setDecodingAbi] = useState(false);
+  const [abiDecoded, setAbiDecoded] = useState(false);
+  const [decodingEvent, setDecodingEvent] = useState(false);
+  const [eventDecoded, setEventDecoded] = useState(false);
 
   const networkOptions = [
     {
@@ -132,14 +138,27 @@ function MintActionConfiguration({
           <ButtonContainer>
             <Subheading variant="regular" text="Contract Address" />
             <VerticalSpace size="S" />
-            <Input
-              type="text"
-              value={mintActionInformation.contractAddress}
-              onChange={(event) => setMintActionInformation({
-                ...mintActionInformation,
-                contractAddress: (event.target.value),
-              })}
-            />
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <Input
+                type="text"
+                value={mintActionInformation.contractAddress}
+                onChange={(event) => {
+                  setMintActionInformation({
+                    ...mintActionInformation,
+                    contractAddress: (event.target.value),
+                  });
+                  setDecodingAbi(true);
+                  setTimeout(() => {
+                    setAbiDecoded(true);
+                  }, 2000);
+                }}
+              />
+              {decodingAbi && (
+              <Typography style={{ marginLeft: 10 }}>
+                {abiDecoded ? 'ABI Decoded' : 'ABI Decoding'}
+              </Typography>
+              )}
+            </div>
           </ButtonContainer>
           )
         }
@@ -157,9 +176,20 @@ function MintActionConfiguration({
                   ...mintActionInformation,
                   event: network as string,
                 });
+                setDecodingEvent(true);
+                setTimeout(() => {
+                  setEventDecoded(true);
+                }, 2000);
               }}
               placeholder={mintActionInformation.event || 'Select Event'}
             />
+            {
+              decodingEvent && (
+                <Typography style={{ marginLeft: 10 }}>
+                  {eventDecoded ? 'Event Decoded' : 'Event Decoding'}
+                </Typography>
+              )
+            }
           </ButtonContainer>
           )
         }
