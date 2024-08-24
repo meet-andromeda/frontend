@@ -9,7 +9,7 @@ import { InputProps } from 'components/types';
 
 const BaseTextField = styled(TextField)<{ type: string }>`
   background-color: ${(props) => props.theme.background.main};
-  width: 100%;
+  width: 400px;
 
   &:hover .MuiOutlinedInput-notchedOutline {
     border-color: ${(props) => props.theme.palette.primary.light};

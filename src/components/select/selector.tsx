@@ -11,7 +11,7 @@ import { Subtitle } from 'components/typographies';
 
 const BaseSelect = styled(Select)`
   background-color: ${(props) => props.theme.background.main};
-  width: 100%;
+  width: 400px;
   height: 2.75rem;
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.125rem 0 ${(props) => props.theme.palette.outlines.light}, 

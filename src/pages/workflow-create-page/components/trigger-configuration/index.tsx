@@ -1,4 +1,5 @@
-import { Box, styled } from '@mui/material';
+import { Box, styled, Typography } from '@mui/material';
+import { useState } from 'react';
 import { ActionCard } from 'components/cards';
 import { HorizontalDivider } from 'components/dividers';
 import ChevronDownIcon from 'components/icons/chevron-down-icon';
@@ -58,6 +59,10 @@ function TriggerConfiguration({
   setTriggerInformation,
 }: TriggerConfigurationProps) : JSX.Element{
   const { showModal, hideModal } = useModalContext();
+  const [decodingAbi, setDecodingAbi] = useState(false);
+  const [abiDecoded, setAbiDecoded] = useState(false);
+  const [decodingEvent, setDecodingEvent] = useState(false);
+  const [eventDecoded, setEventDecoded] = useState(false);
 
   const networkOptions = [
     {
@@ -128,41 +133,69 @@ function TriggerConfiguration({
         }
         <VerticalSpace size="XL" />
         {
-          triggerInformation.network && (
-          <ButtonContainer>
-            <Subheading variant="regular" text="Contract Address" />
-            <VerticalSpace size="S" />
-            <Input
-              type="text"
-              value={triggerInformation.contractAddress}
-              onChange={(event) => setTriggerInformation({
-                ...triggerInformation,
-                contractAddress: (event.target.value),
-              })}
-            />
-          </ButtonContainer>
-          )
-        }
+  triggerInformation.network && (
+    <ButtonContainer>
+      <Subheading variant="regular" text="Contract Address" />
+      <VerticalSpace size="S" />
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Input
+          type="text"
+          value={triggerInformation.contractAddress}
+          onChange={(event) => {
+            setTriggerInformation({
+              ...triggerInformation,
+              contractAddress: (event.target.value),
+            });
+            setDecodingAbi(true);
+            setTimeout(() => {
+              setAbiDecoded(true);
+            }, 2000);
+          }}
+        />
+        {decodingAbi && (
+          <Typography style={{ marginLeft: 10 }}>
+            {abiDecoded ? 'ABI Decoded' : 'ABI Decoding'}
+          </Typography>
+        )}
+      </div>
+    </ButtonContainer>
+  )
+}
+
         <VerticalSpace size="XL" />
         {
-          triggerInformation.contractAddress && (
+          triggerInformation.contractAddress && abiDecoded && (
           <ButtonContainer>
             <Subheading variant="regular" text="Event" />
             <VerticalSpace size="S" />
-            <Selector
-              options={eventOptions}
-              onChange={(event) => {
-                const network = event.target.value || '';
-                setTriggerInformation({
-                  ...triggerInformation,
-                  event: network as string,
-                });
-              }}
-              placeholder={triggerInformation.event || 'Select Event'}
-            />
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <Selector
+                options={eventOptions}
+                onChange={(event) => {
+                  const network = event.target.value || '';
+                  setTriggerInformation({
+                    ...triggerInformation,
+                    event: network as string,
+                  });
+                  setDecodingEvent(true);
+                  setTimeout(() => {
+                    setEventDecoded(true);
+                  }, 2000);
+                }}
+                placeholder={triggerInformation.event || 'Select Event'}
+              />
+              {
+              decodingEvent && (
+                <Typography style={{ marginLeft: 10 }}>
+                  {eventDecoded ? 'Event Decoded' : 'Event Decoding'}
+                </Typography>
+              )
+            }
+            </div>
           </ButtonContainer>
+
           )
-        }
+      }
       </ConfigurationContainer>
     </Container>
   );
