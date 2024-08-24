@@ -109,7 +109,7 @@ function AppNameSelection({
                   setMintActionInformation({ ...mintActionInformation, app: web3App.name });
                 }}
                 >
-                  {web3App.logo}
+                  <Logo src={web3App.logo} />
                   <HorizontalSpace size="S" />
                   <Body text={web3App.name} variant="regular" />
                 </Card>
@@ -129,7 +129,7 @@ function AppNameSelection({
                   setMintActionInformation({ ...mintActionInformation, app: dev1App.name });
                 }}
                 >
-                  {dev1App.logo}
+                  <Logo src={dev1App.logo} />
                   <HorizontalSpace size="S" />
                   <Body text={dev1App.name} variant="regular" />
                 </Card>
@@ -147,7 +147,7 @@ function AppNameSelection({
                   setMintActionInformation({ ...mintActionInformation, app: dev2App.name });
                 }}
                 >
-                  {dev2App.logo}
+                  <Logo src={dev2App.logo} />
                   <HorizontalSpace size="S" />
                   <Body text={dev2App.name} variant="regular" />
                 </Card>
