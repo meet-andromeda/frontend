@@ -19,6 +19,10 @@ const web2Apps = [
     logo: defaultLogo,
   },
   {
+    name: 'Discord',
+    logo: defaultLogo,
+  },
+  {
     name: 'Plaid',
     logo: defaultLogo,
   },
