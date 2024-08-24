@@ -1,10 +1,8 @@
-import { NumberAsString } from 'types';
-
 interface DiscordActionInformation {
   app?: string;
-  network?: NumberAsString;
-  contractAddress?: string;
   event?: string;
+  account?: string;
+  channel?: string;
 }
 
 export default DiscordActionInformation;

@@ -8,8 +8,9 @@ import { Body, Subheading } from 'components/typographies';
 import { useModalContext } from 'contexts/modal-context';
 import { DiscordActionInformation } from 'pages/workflow-create-page/types';
 import AppNameSelection from './app-name-selection';
-// import { Selector } from 'components/select';
-// import { Input } from 'components/inputs';
+import { Selector } from 'components/select';
+import { Input } from 'components/inputs';
+import { ContainedButton } from 'components/buttons';
 
 const Container = styled('div')`
   width: 70vh;
@@ -60,32 +61,20 @@ function DiscordActionConfiguration({
   setDiscordActionInformation,
 }: DiscordActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
-  // const [decodingAbi, setDecodingAbi] = useState(false);
-  // const [abiDecoded, setAbiDecoded] = useState(false);
-  // const [decodingEvent, setDecodingEvent] = useState(false);
-  // const [eventDecoded, setEventDecoded] = useState(false);
 
-  // const networkOptions = [
-  //   {
-  //     value: 'Ethereum (mainnet)',
-  //     label: 'Ethereum (mainnet)',
-  //   },
-  //   {
-  //     value: 'Polygon',
-  //     label: 'Polygon',
-  //   },
-  // ];
+  const eventOptions = [
+    {
+      value: 'Send channel message',
+      label: 'Send channel message',
+    },
+  ];
 
-  // const eventOptions = [
-  //   {
-  //     value: 'Airdrop requested',
-  //     label: 'Airdrop requested',
-  //   },
-  //   {
-  //     value: 'Transaction signed',
-  //     label: 'Transaction signed',
-  //   },
-  // ];
+  const channelOptions = [
+    {
+      value: 'aleph (ID: 234234234234)',
+      label: 'aleph (ID: 234234234234)',
+    },
+  ];
 
   return (
     <Container>
@@ -113,27 +102,81 @@ function DiscordActionConfiguration({
           </Button>
         </ButtonContainer>
         <VerticalSpace size="XL" />
-        {/* {
-          mintActionInformation.app && (
+        {
+          discordActionInformation.app && (
           <ButtonContainer>
-            <Subheading variant="regular" text="Network" />
+            <Subheading variant="regular" text="Event" />
             <VerticalSpace size="S" />
             <Selector
-              options={networkOptions}
-              onChange={(event) => {
-                const network = event.target.value || '';
-                setMintActionInformation({
-                  ...mintActionInformation,
-                  network: network as string,
+              options={eventOptions}
+              onChange={(event: any) => {
+                setDiscordActionInformation({
+                  ...discordActionInformation,
+                  event: event.target.value || '' as string,
                 });
               }}
-              placeholder={mintActionInformation.network || 'Select Network'}
+              placeholder={discordActionInformation.event || 'Select Event'}
             />
           </ButtonContainer>
           )
         }
         <VerticalSpace size="XL" />
         {
+          discordActionInformation.event && (
+            <ButtonContainer>
+              <Subheading variant="regular" text="Account" />
+              <VerticalSpace size="S" />
+              {
+                discordActionInformation.account
+                  ? (
+                    <Input
+                      type="text"
+                      value={discordActionInformation.account}
+                      onChange={() => {
+                        setDiscordActionInformation({
+                          ...discordActionInformation,
+                          account: 'Discord Arch (ID:09029423922)',
+                        });
+                      }}
+                    />
+                  )
+                  : (
+                    <ContainedButton onClick={() => {
+                      setDiscordActionInformation({
+                        ...discordActionInformation,
+                        account: 'Discord Arch (ID:09029423922)',
+                      });
+                    }}
+                    >
+                      Connect Discord
+                    </ContainedButton>
+                  )
+              }
+            </ButtonContainer>
+          )
+        }
+        <VerticalSpace size="XL" />
+        {
+          discordActionInformation.app && (
+          <ButtonContainer>
+            <Subheading variant="regular" text="Channel" />
+            <VerticalSpace size="S" />
+            <Selector
+              options={channelOptions}
+              onChange={(event: any) => {
+                setDiscordActionInformation({
+                  ...discordActionInformation,
+                  channel: event.target.value || '' as string,
+                });
+              }}
+              placeholder={discordActionInformation.channel || 'Select Channel'}
+            />
+          </ButtonContainer>
+          )
+        }
+        <VerticalSpace size="XL" />
+
+        {/* {
           mintActionInformation.network && (
           <ButtonContainer>
             <Subheading variant="regular" text="Contract Address" />
