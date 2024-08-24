@@ -1,8 +1,17 @@
 import { styled } from '@mui/material';
-import { MintActionInformation, TriggerInformation } from '../types';
+import {
+  DiscordActionInformation,
+  FaucetActionInformation,
+  MintActionInformation,
+  SimulationActionInformation,
+  TriggerInformation,
+} from '../types';
 import MintActionConfiguration from './mint-action-configuration';
 import TriggerConfiguration from './trigger-configuration';
 import andromedaLogo from 'assets/images/andromeda-logo.svg';
+import FaucetActionConfiguration from './faucet-action-configuration';
+import SimulationActionConfiguration from './simulation-action-configuration';
+import DiscordActionConfiguration from './discord-action-configuration';
 
 const LogoContainer = styled('div')`
   display: flex;
@@ -22,16 +31,30 @@ interface ConfigurationSectionProps {
   nodeId?: string;
   triggerInformation: TriggerInformation;
   mintActionInformation: MintActionInformation;
+  faucetActionInformation: FaucetActionInformation;
+  simulationActionInformation: SimulationActionInformation;
+  discordActionInformation: DiscordActionInformation;
   setTriggerInformation: (triggerInformation: TriggerInformation) => void;
-  setMintActionInformation: (MintActionInformation: MintActionInformation) => void;
+  setMintActionInformation: (mintActionInformation: MintActionInformation) => void;
+  setFaucetActionInformation: (faucetActionInformation: FaucetActionInformation) => void;
+  setSimulationActionInformation: (
+    simulationActionInformation: SimulationActionInformation
+  ) => void;
+  setDiscordActionInformation: (dicordActionInformation: DiscordActionInformation) => void;
 }
 
 function ConfigurationSection({
   nodeId,
   triggerInformation,
   mintActionInformation,
+  faucetActionInformation,
+  simulationActionInformation,
+  discordActionInformation,
   setTriggerInformation,
   setMintActionInformation,
+  setFaucetActionInformation,
+  setSimulationActionInformation,
+  setDiscordActionInformation,
 }: ConfigurationSectionProps): JSX.Element {
   if (!nodeId) {
     return (
@@ -57,6 +80,33 @@ function ConfigurationSection({
       <MintActionConfiguration
         mintActionInformation={mintActionInformation}
         setMintActionInformation={setMintActionInformation}
+      />
+    );
+  }
+
+  if (nodeId === '2') {
+    return (
+      <FaucetActionConfiguration
+        faucetActionInformation={faucetActionInformation}
+        setFaucetActionInformation={setFaucetActionInformation}
+      />
+    );
+  }
+
+  if (nodeId === '3') {
+    return (
+      <SimulationActionConfiguration
+        simulationActionInformation={simulationActionInformation}
+        setSimulationActionInformation={setSimulationActionInformation}
+      />
+    );
+  }
+
+  if (nodeId === '4') {
+    return (
+      <DiscordActionConfiguration
+        discordActionInformation={discordActionInformation}
+        setDiscordActionInformation={setDiscordActionInformation}
       />
     );
   }

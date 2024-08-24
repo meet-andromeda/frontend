@@ -4,7 +4,13 @@ import {
 } from '@mui/material';
 import { useAccount } from 'wagmi';
 import { ConfigurationSection, WorkflowMap } from './components';
-import { MintActionInformation, TriggerInformation } from './types';
+import {
+  MintActionInformation,
+  TriggerInformation,
+  SimulationActionInformation,
+  FaucetActionInformation,
+  DiscordActionInformation,
+} from './types';
 import { useIsAdmin } from 'web3/andromeda-peripherals';
 import ButtonAppBar from './components/app-bar';
 
@@ -23,6 +29,15 @@ function WorkflowCreatePage(): JSX.Element {
   const [nodeId, setNodeId] = useState<string | undefined>(undefined);
   const [triggerInformation, setTriggerInformation] = useState<TriggerInformation>({});
   const [mintActionInformation, setMintActionInformation] = useState<MintActionInformation>({});
+  const [simulationActionInformation, setSimulationActionInformation] = useState<
+  SimulationActionInformation
+  >({});
+  const [faucetActionInformation, setFaucetActionInformation] = useState<
+  FaucetActionInformation
+  >({});
+  const [discordActionInformation, setDiscordActionInformation] = useState<
+  DiscordActionInformation
+  >({});
   const {
     address,
   } = useAccount();
@@ -59,6 +74,12 @@ function WorkflowCreatePage(): JSX.Element {
           setTriggerInformation={setTriggerInformation}
           mintActionInformation={mintActionInformation}
           setMintActionInformation={setMintActionInformation}
+          simulationActionInformation={simulationActionInformation}
+          setSimulationActionInformation={setSimulationActionInformation}
+          faucetActionInformation={faucetActionInformation}
+          setFaucetActionInformation={setFaucetActionInformation}
+          discordActionInformation={discordActionInformation}
+          setDiscordActionInformation={setDiscordActionInformation}
         />
       </Container>
     </StyledBox>

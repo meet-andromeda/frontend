@@ -1,15 +1,15 @@
-import { Box, Typography, styled } from '@mui/material';
-import { useState } from 'react';
+import { Box, styled } from '@mui/material';
+// import { useState } from 'react';
 import { ActionCard } from 'components/cards';
 import { HorizontalDivider } from 'components/dividers';
 import ChevronDownIcon from 'components/icons/chevron-down-icon';
 import { VerticalSpace } from 'components/spacing';
 import { Body, Subheading } from 'components/typographies';
 import { useModalContext } from 'contexts/modal-context';
-import { MintActionInformation } from 'pages/workflow-create-page/types';
+import { DiscordActionInformation } from 'pages/workflow-create-page/types';
 import AppNameSelection from './app-name-selection';
-import { Selector } from 'components/select';
-import { Input } from 'components/inputs';
+// import { Selector } from 'components/select';
+// import { Input } from 'components/inputs';
 
 const Container = styled('div')`
   width: 70vh;
@@ -50,42 +50,42 @@ const ButtonTitle = styled(Body)`
   width: fit-content;
 `;
 
-interface MintActionConfigurationProps {
-  mintActionInformation: MintActionInformation;
-  setMintActionInformation: (MintActionInformation: MintActionInformation) => void;
+interface DiscordActionConfigurationProps {
+  discordActionInformation: DiscordActionInformation;
+  setDiscordActionInformation: (discordActionInformation: DiscordActionInformation) => void;
 }
 
-function MintActionConfiguration({
-  mintActionInformation,
-  setMintActionInformation,
-}: MintActionConfigurationProps): JSX.Element {
+function DiscordActionConfiguration({
+  discordActionInformation,
+  setDiscordActionInformation,
+}: DiscordActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
-  const [decodingAbi, setDecodingAbi] = useState(false);
-  const [abiDecoded, setAbiDecoded] = useState(false);
-  const [decodingEvent, setDecodingEvent] = useState(false);
-  const [eventDecoded, setEventDecoded] = useState(false);
+  // const [decodingAbi, setDecodingAbi] = useState(false);
+  // const [abiDecoded, setAbiDecoded] = useState(false);
+  // const [decodingEvent, setDecodingEvent] = useState(false);
+  // const [eventDecoded, setEventDecoded] = useState(false);
 
-  const networkOptions = [
-    {
-      value: 'Ethereum (mainnet)',
-      label: 'Ethereum (mainnet)',
-    },
-    {
-      value: 'Polygon',
-      label: 'Polygon',
-    },
-  ];
+  // const networkOptions = [
+  //   {
+  //     value: 'Ethereum (mainnet)',
+  //     label: 'Ethereum (mainnet)',
+  //   },
+  //   {
+  //     value: 'Polygon',
+  //     label: 'Polygon',
+  //   },
+  // ];
 
-  const eventOptions = [
-    {
-      value: 'Airdrop requested',
-      label: 'Airdrop requested',
-    },
-    {
-      value: 'Transaction signed',
-      label: 'Transaction signed',
-    },
-  ];
+  // const eventOptions = [
+  //   {
+  //     value: 'Airdrop requested',
+  //     label: 'Airdrop requested',
+  //   },
+  //   {
+  //     value: 'Transaction signed',
+  //     label: 'Transaction signed',
+  //   },
+  // ];
 
   return (
     <Container>
@@ -102,18 +102,18 @@ function MintActionConfiguration({
             showModal({
               component: <AppNameSelection
                 hideModal={hideModal}
-                mintActionInformation={mintActionInformation}
-                setMintActionInformation={setMintActionInformation}
+                discordActionInformation={discordActionInformation}
+                setDiscordActionInformation={setDiscordActionInformation}
               />,
             });
           }}
           >
-            <ButtonTitle text={mintActionInformation.app || 'Select App'} variant="medium" />
+            <ButtonTitle text={discordActionInformation.app || 'Select App'} variant="medium" />
             <ChevronDownIcon />
           </Button>
         </ButtonContainer>
         <VerticalSpace size="XL" />
-        {
+        {/* {
           mintActionInformation.app && (
           <ButtonContainer>
             <Subheading variant="regular" text="Network" />
@@ -192,10 +192,10 @@ function MintActionConfiguration({
             }
           </ButtonContainer>
           )
-        }
+        } */}
       </ConfigurationContainer>
     </Container>
   );
 }
 
-export default MintActionConfiguration;
+export default DiscordActionConfiguration;

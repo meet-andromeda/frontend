@@ -45,7 +45,6 @@ function WorkflowMap({
   const CustomNode = useCallback(({ id, data }: CustomNodeProps) => (
     <Box
       onClick={() => {
-        console.log(id);
         setNodeId(id.toString());
       }}
       className="react-flow__node-default"

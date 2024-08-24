@@ -3,7 +3,7 @@ import { FormCard, ListCard } from 'components/cards';
 import { HorizontalDivider } from 'components/dividers';
 import { HorizontalSpace, VerticalSpace } from 'components/spacing';
 import { Body, Subheading } from 'components/typographies';
-import { TriggerInformation } from 'pages/workflow-create-page/types';
+import { FaucetActionInformation } from 'pages/workflow-create-page/types';
 import {
   web2Apps,
   web3Apps,
@@ -59,14 +59,14 @@ const Logo = styled('img')`
 
 interface AppNameSelectionProps {
   hideModal: () => void;
-  triggerInformation: TriggerInformation;
-  setTriggerInformation: (triggerInformation: TriggerInformation) => void;
+  faucetActionInformation: FaucetActionInformation;
+  setFaucetActionInformation: (faucetActionInformation: FaucetActionInformation) => void;
 }
 
 function AppNameSelection({
   hideModal,
-  triggerInformation,
-  setTriggerInformation,
+  faucetActionInformation,
+  setFaucetActionInformation,
 }: AppNameSelectionProps): JSX.Element {
   return (
     <Container>
@@ -86,7 +86,7 @@ function AppNameSelection({
               <CardContainer key={web2App.name}>
                 <Card onClick={() => {
                   hideModal();
-                  setTriggerInformation({ ...triggerInformation, app: web2App.name });
+                  setFaucetActionInformation({ ...faucetActionInformation, app: web2App.name });
                 }}
                 >
                   <Logo src={web2App.logo} />
@@ -106,7 +106,7 @@ function AppNameSelection({
               <CardContainer key={web3App.name}>
                 <Card onClick={() => {
                   hideModal();
-                  setTriggerInformation({ ...triggerInformation, app: web3App.name });
+                  setFaucetActionInformation({ ...faucetActionInformation, app: web3App.name });
                 }}
                 >
                   <Logo src={web3App.logo} />
@@ -126,7 +126,7 @@ function AppNameSelection({
               <CardContainer key={dev1App.name}>
                 <Card onClick={() => {
                   hideModal();
-                  setTriggerInformation({ ...triggerInformation, app: dev1App.name });
+                  setFaucetActionInformation({ ...faucetActionInformation, app: dev1App.name });
                 }}
                 >
                   <Logo src={dev1App.logo} />
@@ -144,7 +144,7 @@ function AppNameSelection({
               <CardContainer key={dev2App.name}>
                 <Card onClick={() => {
                   hideModal();
-                  setTriggerInformation({ ...triggerInformation, app: dev2App.name });
+                  setFaucetActionInformation({ ...faucetActionInformation, app: dev2App.name });
                 }}
                 >
                   <Logo src={dev2App.logo} />

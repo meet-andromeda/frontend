@@ -102,13 +102,13 @@ function TriggerConfiguration({
             });
           }}
           >
-            <ButtonTitle text={triggerInformation.name || 'Select App'} variant="medium" />
+            <ButtonTitle text={triggerInformation.app || 'Select App'} variant="medium" />
             <ChevronDownIcon />
           </Button>
         </ButtonContainer>
         <VerticalSpace size="XL" />
         {
-          triggerInformation.name && (
+          triggerInformation.app && (
           <ButtonContainer>
             <Subheading variant="regular" text="Network" />
             <VerticalSpace size="S" />
