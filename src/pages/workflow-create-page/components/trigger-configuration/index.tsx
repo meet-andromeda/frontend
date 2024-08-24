@@ -7,6 +7,8 @@ import { Body, Subheading } from 'components/typographies';
 import { useModalContext } from 'contexts/modal-context';
 import AppNameSelection from './app-name-selection';
 import { TriggerInformation } from 'pages/workflow-create-page/types';
+import { Selector } from 'components/select';
+import { Input } from 'components/inputs';
 
 const Container = styled('div')`
   width: 40%;
@@ -56,6 +58,29 @@ function TriggerConfiguration({
   setTriggerInformation,
 }: TriggerConfigurationProps) : JSX.Element{
   const { showModal, hideModal } = useModalContext();
+
+  const networkOptions = [
+    {
+      value: 'Ethereum (mainnet)',
+      label: 'Ethereum (mainnet)',
+    },
+    {
+      value: 'Polygon',
+      label: 'Polygon',
+    },
+  ];
+
+  const eventOptions = [
+    {
+      value: 'Airdrop requested',
+      label: 'Airdrop requested',
+    },
+    {
+      value: 'Transaction signed',
+      label: 'Transaction signed',
+    },
+  ];
+
   return (
     <Container>
       <Header>
@@ -82,23 +107,62 @@ function TriggerConfiguration({
           </Button>
         </ButtonContainer>
         <VerticalSpace size="XL" />
-        <ButtonContainer>
-          <Subheading variant="regular" text="Event" />
-          <VerticalSpace size="S" />
-          <Button onClick={() => console.log('ctm')}>
-            <ButtonTitle text="Select Event" variant="medium" />
-            <ChevronDownIcon />
-          </Button>
-        </ButtonContainer>
+        {
+          triggerInformation.name && (
+          <ButtonContainer>
+            <Subheading variant="regular" text="Network" />
+            <VerticalSpace size="S" />
+            <Selector
+              options={networkOptions}
+              onChange={(event) => {
+                const network = event.target.value || '';
+                setTriggerInformation({
+                  ...triggerInformation,
+                  network: network as string,
+                });
+              }}
+              placeholder={triggerInformation.network || 'Select Network'}
+            />
+          </ButtonContainer>
+          )
+        }
         <VerticalSpace size="XL" />
-        <ButtonContainer>
-          <Subheading variant="regular" text="Account" />
-          <VerticalSpace size="S" />
-          <Button onClick={() => console.log('ctm')}>
-            <ButtonTitle text="Select Account" variant="medium" />
-            <ChevronDownIcon />
-          </Button>
-        </ButtonContainer>
+        {
+          triggerInformation.network && (
+          <ButtonContainer>
+            <Subheading variant="regular" text="Contract Address" />
+            <VerticalSpace size="S" />
+            <Input
+              type="text"
+              value={triggerInformation.contractAddress}
+              onChange={(event) => setTriggerInformation({
+                ...triggerInformation,
+                contractAddress: (event.target.value),
+              })}
+            />
+          </ButtonContainer>
+          )
+        }
+        <VerticalSpace size="XL" />
+        {
+          triggerInformation.contractAddress && (
+          <ButtonContainer>
+            <Subheading variant="regular" text="Event" />
+            <VerticalSpace size="S" />
+            <Selector
+              options={eventOptions}
+              onChange={(event) => {
+                const network = event.target.value || '';
+                setTriggerInformation({
+                  ...triggerInformation,
+                  event: network as string,
+                });
+              }}
+              placeholder={triggerInformation.event || 'Select Event'}
+            />
+          </ButtonContainer>
+          )
+        }
       </ConfigurationContainer>
     </Container>
   );
