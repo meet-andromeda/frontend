@@ -18,11 +18,6 @@ const Logo = styled('img')`
   padding: 0;  
 `;
 
-const Container = styled('div')`
-  height: 90vh;
-  display:"flex";
-`;
-
 interface ConfigurationSectionProps {
   nodeId?: string;
   triggerInformation: TriggerInformation;
@@ -44,19 +39,17 @@ function ConfigurationSection({
 
   if (nodeId === '0') {
     return (
-      <Container>
+      <div>
         <TriggerConfiguration
           triggerInformation={triggerInformation}
           setTriggerInformation={setTriggerInformation}
         />
-      </Container>
+      </div>
     );
   }
 
   return (
-    <Container>
-      <ActionConfiguration />
-    </Container>
+    <ActionConfiguration />
   );
 }
 

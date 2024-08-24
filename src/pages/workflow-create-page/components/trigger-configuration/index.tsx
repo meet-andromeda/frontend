@@ -11,7 +11,7 @@ import { Selector } from 'components/select';
 import { Input } from 'components/inputs';
 
 const Container = styled('div')`
-  width: 40%;
+  width: 70vh;
   align-items: center;
   text-align: center;
 `;
