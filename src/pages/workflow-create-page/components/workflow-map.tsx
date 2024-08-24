@@ -22,8 +22,8 @@ const Container = styled('div')<{
   useCompletePage: boolean;
 }>`
   width: ${(props) => (props.useCompletePage ? '100%' : '60%')};
-  height: 100vh;
-  border: 0.5rem solid #ddd;
+  height: 90vh;
+  border-right: 0.25rem solid #ddd;
 `;
 
 interface WorkflowMapProps {

@@ -9,10 +9,10 @@ const palette = {
     black: colors.black,
   },
   primary: {
-    main: colors.electricGreen,
-    light: colors.electricGreen,
-    dark: colors.islamicGreen,
-    contrastText: colors.white,
+    main: colors.white,
+    light: colors.white,
+    dark: colors.white,
+    contrastText: colors.black,
   },
   outlines: {
     main: colors.auroMetalSaurus,

@@ -1,6 +1,12 @@
+import { styled } from '@mui/material';
 import { TriggerInformation } from '../types';
 import ActionConfiguration from './action-configuration';
 import TriggerConfiguration from './trigger-configuration';
+
+const Container = styled('div')`
+  height: 90vh;
+  display:"flex";
+`;
 
 interface ConfigurationSectionProps {
   nodeId?: string;
@@ -15,23 +21,27 @@ function ConfigurationSection({
 }: ConfigurationSectionProps): JSX.Element {
   if (!nodeId) {
     return (
-      <div>
+      <Container>
         Please select a node to configure
-      </div>
+      </Container>
     );
   }
 
   if (nodeId === '0') {
     return (
-      <TriggerConfiguration
-        triggerInformation={triggerInformation}
-        setTriggerInformation={setTriggerInformation}
-      />
+      <Container>
+        <TriggerConfiguration
+          triggerInformation={triggerInformation}
+          setTriggerInformation={setTriggerInformation}
+        />
+      </Container>
     );
   }
 
   return (
-    <ActionConfiguration />
+    <Container>
+      <ActionConfiguration />
+    </Container>
   );
 }
 

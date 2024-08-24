@@ -9,6 +9,7 @@ const Container = styled('div')`
   width: 70vh;
   align-items: center;
   text-align: center;
+  
 `;
 
 const Header = styled('div')`
