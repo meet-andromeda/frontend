@@ -3,6 +3,7 @@ interface DiscordActionInformation {
   event?: string;
   account?: string;
   channel?: string;
+  botName?: string;
 }
 
 export default DiscordActionInformation;

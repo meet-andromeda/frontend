@@ -16,7 +16,7 @@ const Container = styled('div')`
   width: 70vh;
   align-items: center;
   text-align: center;
-  
+
 `;
 
 const Header = styled('div')`
@@ -30,7 +30,7 @@ const Header = styled('div')`
 `;
 
 const ConfigurationContainer = styled('div')`
-  padding: 8rem 4rem;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
 `;
@@ -73,6 +73,13 @@ function DiscordActionConfiguration({
     {
       value: 'aleph (ID: 234234234234)',
       label: 'aleph (ID: 234234234234)',
+    },
+  ];
+
+  const botNameOptions = [
+    {
+      value: 'Andromeda Bot',
+      label: 'Andromeda Bot',
     },
   ];
 
@@ -157,7 +164,7 @@ function DiscordActionConfiguration({
         }
         <VerticalSpace size="XL" />
         {
-          discordActionInformation.app && (
+          discordActionInformation.account && (
           <ButtonContainer>
             <Subheading variant="regular" text="Channel" />
             <VerticalSpace size="S" />
@@ -175,67 +182,44 @@ function DiscordActionConfiguration({
           )
         }
         <VerticalSpace size="XL" />
-
-        {/* {
-          mintActionInformation.network && (
+        {
+          discordActionInformation.channel && (
           <ButtonContainer>
-            <Subheading variant="regular" text="Contract Address" />
+            <Subheading variant="regular" text="Bot Name" />
             <VerticalSpace size="S" />
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <Input
-                type="text"
-                value={mintActionInformation.contractAddress}
-                onChange={(event) => {
-                  setMintActionInformation({
-                    ...mintActionInformation,
-                    contractAddress: (event.target.value),
-                  });
-                  setDecodingAbi(true);
-                  setTimeout(() => {
-                    setAbiDecoded(true);
-                  }, 2000);
-                }}
-              />
-              {decodingAbi && (
-              <Typography style={{ marginLeft: 10 }}>
-                {abiDecoded ? 'ABI Decoded' : 'ABI Decoding'}
-              </Typography>
-              )}
-            </div>
+            <Selector
+              options={botNameOptions}
+              onChange={(event: any) => {
+                setDiscordActionInformation({
+                  ...discordActionInformation,
+                  botName: event.target.value || '' as string,
+                });
+              }}
+              placeholder={discordActionInformation.botName || 'Select Bot'}
+            />
           </ButtonContainer>
           )
         }
         <VerticalSpace size="XL" />
         {
-          mintActionInformation.contractAddress && abiDecoded && (
+          discordActionInformation.botName && (
           <ButtonContainer>
-            <Subheading variant="regular" text="Event" />
+            <Subheading variant="regular" text="Message Text" />
             <VerticalSpace size="S" />
-            <Selector
-              options={eventOptions}
+            <Input
+              type="text"
+              value={discordActionInformation.message}
               onChange={(event) => {
-                const network = event.target.value || '';
-                setMintActionInformation({
-                  ...mintActionInformation,
-                  event: network as string,
+                setDiscordActionInformation({
+                  ...discordActionInformation,
+                  message: (event.target.value),
                 });
-                setDecodingEvent(true);
-                setTimeout(() => {
-                  setEventDecoded(true);
-                }, 2000);
               }}
-              placeholder={mintActionInformation.event || 'Select Event'}
             />
-            {
-              decodingEvent && (
-                <Typography style={{ marginLeft: 10 }}>
-                  {eventDecoded ? 'Event Decoded' : 'Event Decoding'}
-                </Typography>
-              )
-            }
           </ButtonContainer>
           )
-        } */}
+        }
+        <VerticalSpace size="XL" />
       </ConfigurationContainer>
     </Container>
   );
