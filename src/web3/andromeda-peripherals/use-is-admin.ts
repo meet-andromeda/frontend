@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useReadContract } from 'wagmi';
 import useDeepCompareEffect from 'use-deep-compare-effect';
+import { polygonZkEvm } from 'viem/chains';
 import loginAbi from './abis/login-abi';
 import { Address0x } from 'types';
 
@@ -27,12 +28,13 @@ const useIsAdmin = ({ userAddress }: UseIsAdminProps): UseIsAdminResponse => {
   const {
     data, isLoading,
   }: IsAdminResult = useReadContract({
-    address: '0x2e650b7D52d7B9d2463eA50957964978FB2705Fd',
+    address: '0xC7710E3a9EfaeC22DAcad63705F6fcEfeDe0b9D5',
     abi: loginAbi,
     functionName: 'isAdmin',
-    chainId: 137,
+    chainId: polygonZkEvm.id,
     args: [userAddress as Address0x],
   });
+
   useDeepCompareEffect(() => {
     const isAdminResponse = async (): Promise<void> => {
       if (data) {
