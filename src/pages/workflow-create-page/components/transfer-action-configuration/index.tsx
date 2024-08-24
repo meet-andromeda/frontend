@@ -6,7 +6,7 @@ import ChevronDownIcon from 'components/icons/chevron-down-icon';
 import { VerticalSpace } from 'components/spacing';
 import { Body, Subheading } from 'components/typographies';
 import { useModalContext } from 'contexts/modal-context';
-import { FaucetActionInformation } from 'pages/workflow-create-page/types';
+import { TransferActionInformation } from 'pages/workflow-create-page/types';
 import AppNameSelection from './app-name-selection';
 // import { Selector } from 'components/select';
 // import { Input } from 'components/inputs';
@@ -50,15 +50,15 @@ const ButtonTitle = styled(Body)`
   width: fit-content;
 `;
 
-interface FaucetActionConfigurationProps {
-  faucetActionInformation: FaucetActionInformation;
-  setFaucetActionInformation: (faucetActionInformation: FaucetActionInformation) => void;
+interface TransferActionConfigurationProps {
+  transferActionInformation: TransferActionInformation;
+  setTransferActionInformation: (transferActionInformation: TransferActionInformation) => void;
 }
 
-function FaucetActionConfiguration({
-  faucetActionInformation,
-  setFaucetActionInformation,
-}: FaucetActionConfigurationProps): JSX.Element {
+function TransferActionConfiguration({
+  transferActionInformation,
+  setTransferActionInformation,
+}: TransferActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
   // const [decodingAbi, setDecodingAbi] = useState(false);
   // const [abiDecoded, setAbiDecoded] = useState(false);
@@ -102,13 +102,13 @@ function FaucetActionConfiguration({
             showModal({
               component: <AppNameSelection
                 hideModal={hideModal}
-                faucetActionInformation={faucetActionInformation}
-                setFaucetActionInformation={setFaucetActionInformation}
+                transferActionInformation={transferActionInformation}
+                setTransferActionInformation={setTransferActionInformation}
               />,
             });
           }}
           >
-            <ButtonTitle text={faucetActionInformation.app || 'Select App'} variant="medium" />
+            <ButtonTitle text={transferActionInformation.app || 'Select App'} variant="medium" />
             <ChevronDownIcon />
           </Button>
         </ButtonContainer>
@@ -198,4 +198,4 @@ function FaucetActionConfiguration({
   );
 }
 
-export default FaucetActionConfiguration;
+export default TransferActionConfiguration;

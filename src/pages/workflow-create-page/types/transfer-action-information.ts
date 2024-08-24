@@ -1,10 +1,10 @@
 import { NumberAsString } from 'types';
 
-interface FaucetActionInformation {
+interface TransferActionInformation {
   app?: string;
   network?: NumberAsString;
   contractAddress?: string;
   event?: string;
 }
 
-export default FaucetActionInformation;
+export default TransferActionInformation;

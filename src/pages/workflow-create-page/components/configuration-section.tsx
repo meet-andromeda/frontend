@@ -1,7 +1,7 @@
 import { styled } from '@mui/material';
 import {
   DiscordActionInformation,
-  FaucetActionInformation,
+  TransferActionInformation,
   MintActionInformation,
   SimulationActionInformation,
   TriggerInformation,
@@ -9,7 +9,7 @@ import {
 import MintActionConfiguration from './mint-action-configuration';
 import TriggerConfiguration from './trigger-configuration';
 import andromedaLogo from 'assets/images/andromeda-logo.svg';
-import FaucetActionConfiguration from './faucet-action-configuration';
+import TransferActionConfiguration from './transfer-action-configuration';
 import SimulationActionConfiguration from './simulation-action-configuration';
 import DiscordActionConfiguration from './discord-action-configuration';
 
@@ -31,12 +31,12 @@ interface ConfigurationSectionProps {
   nodeId?: string;
   triggerInformation: TriggerInformation;
   mintActionInformation: MintActionInformation;
-  faucetActionInformation: FaucetActionInformation;
+  transferActionInformation: TransferActionInformation;
   simulationActionInformation: SimulationActionInformation;
   discordActionInformation: DiscordActionInformation;
   setTriggerInformation: (triggerInformation: TriggerInformation) => void;
   setMintActionInformation: (mintActionInformation: MintActionInformation) => void;
-  setFaucetActionInformation: (faucetActionInformation: FaucetActionInformation) => void;
+  setTransferActionInformation: (transferActionInformation: TransferActionInformation) => void;
   setSimulationActionInformation: (
     simulationActionInformation: SimulationActionInformation
   ) => void;
@@ -47,12 +47,12 @@ function ConfigurationSection({
   nodeId,
   triggerInformation,
   mintActionInformation,
-  faucetActionInformation,
+  transferActionInformation,
   simulationActionInformation,
   discordActionInformation,
   setTriggerInformation,
   setMintActionInformation,
-  setFaucetActionInformation,
+  setTransferActionInformation,
   setSimulationActionInformation,
   setDiscordActionInformation,
 }: ConfigurationSectionProps): JSX.Element {
@@ -86,9 +86,9 @@ function ConfigurationSection({
 
   if (nodeId === '2') {
     return (
-      <FaucetActionConfiguration
-        faucetActionInformation={faucetActionInformation}
-        setFaucetActionInformation={setFaucetActionInformation}
+      <TransferActionConfiguration
+        transferActionInformation={transferActionInformation}
+        setTransferActionInformation={setTransferActionInformation}
       />
     );
   }

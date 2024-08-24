@@ -8,7 +8,7 @@ import {
   MintActionInformation,
   TriggerInformation,
   SimulationActionInformation,
-  FaucetActionInformation,
+  TransferActionInformation,
   DiscordActionInformation,
 } from './types';
 import { useIsAdmin } from 'web3/andromeda-peripherals';
@@ -32,8 +32,8 @@ function WorkflowCreatePage(): JSX.Element {
   const [simulationActionInformation, setSimulationActionInformation] = useState<
   SimulationActionInformation
   >({});
-  const [faucetActionInformation, setFaucetActionInformation] = useState<
-  FaucetActionInformation
+  const [transferActionInformation, setTransferActionInformation] = useState<
+  TransferActionInformation
   >({});
   const [discordActionInformation, setDiscordActionInformation] = useState<
   DiscordActionInformation
@@ -76,8 +76,8 @@ function WorkflowCreatePage(): JSX.Element {
           setMintActionInformation={setMintActionInformation}
           simulationActionInformation={simulationActionInformation}
           setSimulationActionInformation={setSimulationActionInformation}
-          faucetActionInformation={faucetActionInformation}
-          setFaucetActionInformation={setFaucetActionInformation}
+          transferActionInformation={transferActionInformation}
+          setTransferActionInformation={setTransferActionInformation}
           discordActionInformation={discordActionInformation}
           setDiscordActionInformation={setDiscordActionInformation}
         />
