@@ -99,13 +99,6 @@ function DiscordActionConfiguration({
     },
   ];
 
-  const botNameOptions = [
-    {
-      value: 'Andromeda Bot',
-      label: 'Andromeda Bot',
-    },
-  ];
-
   if (discordActionInformation.account) {
     return (
       <Container>
@@ -135,15 +128,14 @@ function DiscordActionConfiguration({
             <ButtonContainer>
               <Subheading variant="regular" text="Bot Name" />
               <VerticalSpace size="S" />
-              <Selector
-                options={botNameOptions}
+              <Input
                 onChange={(event: any) => {
                   setDiscordActionInformation({
                     ...discordActionInformation,
                     botName: event.target.value || '' as string,
                   });
                 }}
-                placeholder={discordActionInformation.botName || 'Select Bot'}
+                placeholder={discordActionInformation.botName || 'Add Bot Name'}
               />
             </ButtonContainer>
             )
