@@ -303,7 +303,7 @@ function MintActionConfiguration({
           {
             mintActionInformation.destination && (
               <ButtonContainer>
-                <Subheading variant="regular" text="Test with GoPLus" />
+                <Subheading variant="regular" text="Screen with GoPLus" />
                 <VerticalSpace size="S" />
                 <Selector
                   options={testWithGoPlusOptions}
