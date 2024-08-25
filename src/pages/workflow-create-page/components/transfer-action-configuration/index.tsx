@@ -39,7 +39,7 @@ const Header = styled('div')`
 `;
 
 const ConfigurationContainer = styled('div')`
-  padding: 8rem 4rem;
+  padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
 `;
@@ -261,7 +261,7 @@ function TransferActionConfiguration({
           {
             transferActionInformation.amount && (
               <ButtonContainer>
-                <Subheading variant="regular" text="Test with GoPLus" />
+                <Subheading variant="regular" text="Screen with GoPLus" />
                 <VerticalSpace size="S" />
                 <Selector
                   options={testWithGoPlusOptions}
