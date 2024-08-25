@@ -120,7 +120,7 @@ function AppNameSelection({
           }
         </AppSectionContainer>
         <AppSectionContainer>
-          <Subheading variant="regular" text="Development" />
+          <Subheading variant="regular" text="Tools" />
           <VerticalSpace size="S" />
           {
             dev1Apps.map((dev1App) => (

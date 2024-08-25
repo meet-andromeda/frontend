@@ -1,5 +1,4 @@
 import { Box, styled } from '@mui/material';
-// import { useState } from 'react';
 import { ActionCard } from 'components/cards';
 import { HorizontalDivider } from 'components/dividers';
 import ChevronDownIcon from 'components/icons/chevron-down-icon';
@@ -8,8 +7,6 @@ import { Body, Subheading } from 'components/typographies';
 import { useModalContext } from 'contexts/modal-context';
 import { SimulationActionInformation } from 'pages/workflow-create-page/types';
 import AppNameSelection from './app-name-selection';
-// import { Selector } from 'components/select';
-// import { Input } from 'components/inputs';
 
 const Container = styled('div')`
   width: 70vh;
@@ -62,32 +59,6 @@ function SimulationActionConfiguration({
   setSimulationActionInformation,
 }: SimulationActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
-  // const [decodingAbi, setDecodingAbi] = useState(false);
-  // const [abiDecoded, setAbiDecoded] = useState(false);
-  // const [decodingEvent, setDecodingEvent] = useState(false);
-  // const [eventDecoded, setEventDecoded] = useState(false);
-
-  // const networkOptions = [
-  //   {
-  //     value: 'Ethereum (mainnet)',
-  //     label: 'Ethereum (mainnet)',
-  //   },
-  //   {
-  //     value: 'Polygon',
-  //     label: 'Polygon',
-  //   },
-  // ];
-
-  // const eventOptions = [
-  //   {
-  //     value: 'Airdrop requested',
-  //     label: 'Airdrop requested',
-  //   },
-  //   {
-  //     value: 'Transaction signed',
-  //     label: 'Transaction signed',
-  //   },
-  // ];
 
   return (
     <Container>
@@ -115,86 +86,7 @@ function SimulationActionConfiguration({
           </Button>
         </ButtonContainer>
         <VerticalSpace size="XL" />
-        {/* {
-          mintActionInformation.app && (
-          <ButtonContainer>
-            <Subheading variant="regular" text="Network" />
-            <VerticalSpace size="S" />
-            <Selector
-              options={networkOptions}
-              onChange={(event) => {
-                const network = event.target.value || '';
-                setMintActionInformation({
-                  ...mintActionInformation,
-                  network: network as string,
-                });
-              }}
-              placeholder={mintActionInformation.network || 'Select Network'}
-            />
-          </ButtonContainer>
-          )
-        }
-        <VerticalSpace size="XL" />
-        {
-          mintActionInformation.network && (
-          <ButtonContainer>
-            <Subheading variant="regular" text="Contract Address" />
-            <VerticalSpace size="S" />
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <Input
-                type="text"
-                value={mintActionInformation.contractAddress}
-                onChange={(event) => {
-                  setMintActionInformation({
-                    ...mintActionInformation,
-                    contractAddress: (event.target.value),
-                  });
-                  setDecodingAbi(true);
-                  setTimeout(() => {
-                    setAbiDecoded(true);
-                  }, 2000);
-                }}
-              />
-              {decodingAbi && (
-              <Typography style={{ marginLeft: 10 }}>
-                {abiDecoded ? 'ABI Decoded' : 'ABI Decoding'}
-              </Typography>
-              )}
-            </div>
-          </ButtonContainer>
-          )
-        }
-        <VerticalSpace size="XL" />
-        {
-          mintActionInformation.contractAddress && abiDecoded && (
-          <ButtonContainer>
-            <Subheading variant="regular" text="Event" />
-            <VerticalSpace size="S" />
-            <Selector
-              options={eventOptions}
-              onChange={(event) => {
-                const network = event.target.value || '';
-                setMintActionInformation({
-                  ...mintActionInformation,
-                  event: network as string,
-                });
-                setDecodingEvent(true);
-                setTimeout(() => {
-                  setEventDecoded(true);
-                }, 2000);
-              }}
-              placeholder={mintActionInformation.event || 'Select Event'}
-            />
-            {
-              decodingEvent && (
-                <Typography style={{ marginLeft: 10 }}>
-                  {eventDecoded ? 'Event Decoded' : 'Event Decoding'}
-                </Typography>
-              )
-            }
-          </ButtonContainer>
-          )
-        } */}
+
       </ConfigurationContainer>
     </Container>
   );
