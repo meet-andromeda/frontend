@@ -79,6 +79,8 @@ function TransferActionConfiguration({
   const [showTest, setShowTest] = useState(false);
   const [screeningDate, setScreeningDate] = useState('');
   const [simulationDate, setSimulationDate] = useState('');
+  const [screeningState, setScreeningState] = useState<'active' | 'loading'>('active');
+  const [simulationState, setSimulationState] = useState<'active' | 'loading'>('active');
 
   const networkOptions = [
     {
@@ -228,7 +230,11 @@ function TransferActionConfiguration({
         >
           Test
         </StyledButton>
+        <VerticalSpace
+          size="XL"
+        />
       </ButtonContainer>
+
       )
     }
           </>
@@ -282,15 +288,18 @@ function TransferActionConfiguration({
                 size="XL"
               />
               <StyledButton
+                state={screeningState}
                 onClick={() => {
+                  setScreeningState('loading');
                   setTimeout(() => {
                     const currentDate = new Date();
                     const niceFormat = currentDate.toLocaleDateString('en-CA');
                     setScreeningDate(niceFormat);
+                    setScreeningState('active');
                   }, 2000);
                 }}
               >
-                Screen with Malaya
+                Screen with GoPlus+
               </StyledButton>
               { screeningDate && (
                 <div style={{ textAlign: 'right' }}>
@@ -301,11 +310,14 @@ function TransferActionConfiguration({
               )}
               <VerticalSpace size="XL" />
               <StyledButton
+                state={simulationState}
                 onClick={() => {
+                  setSimulationState('loading');
                   setTimeout(() => {
                     const currentDate = new Date();
                     const niceFormat = currentDate.toLocaleDateString('en-CA');
                     setSimulationDate(niceFormat);
+                    setSimulationState('active');
                   }, 2000);
                 }}
               >
