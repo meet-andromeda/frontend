@@ -53,22 +53,23 @@ export default function ButtonAppBar(): any {
   const displayedMaticBalance = formattedMaticBalance.toFixed(2);
 
   return (
-    <Box sx={{ flexGrow: 1, color: 'white' }}>
+    <Box sx={{ color: 'white' }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div">
             New WerkFlow
           </Typography>
-          <Typography>
-            Acme Protocol
-          </Typography>
-          <StyledButton
-            onClick={() => window.open(`https://polygonscan.com/address/${address}`, '_blank')}
-          >
-            {shortenAddress(address || '')}
-          </StyledButton>
           <HorizontalSpace size="M" />
-          <Typography>
+          <StyledCircleWalletButton
+            onClick={() => window.open(`https://polygonscan.com/address/${circleUserAddress}`, '_blank')}
+          >
+            {shortenAddress(circleUserAddress || '')}
+          </StyledCircleWalletButton>
+
+          <HorizontalSpace size="M" />
+          <Typography
+            sx={{ flexGrow: 1 }}
+          >
             Circle Wallet balance:
             {' '}
             {balance}
@@ -80,13 +81,14 @@ export default function ButtonAppBar(): any {
             {' '}
             MATIC
           </Typography>
-          <StyledCircleWalletButton
-            onClick={() => window.open(`https://polygonscan.com/address/${circleUserAddress}`, '_blank')}
+          <Typography>
+            Acme Protocol
+          </Typography>
+          <StyledButton
+            onClick={() => window.open(`https://polygonscan.com/address/${address}`, '_blank')}
           >
-            Circle 💳
-            {' '}
-            {shortenAddress(circleUserAddress || '')}
-          </StyledCircleWalletButton>
+            {shortenAddress(address || '')}
+          </StyledButton>
         </Toolbar>
       </AppBar>
     </Box>
