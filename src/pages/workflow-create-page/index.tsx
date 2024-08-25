@@ -72,8 +72,8 @@ function WorkflowCreatePage(): JSX.Element {
       label: `${shortenAddress(circleUserAddress || '')} | Acme Wallet | Wallet | System`,
     },
     {
-      value: '0x523c...b4f2 | User address | Tenderly | Trigger ',
-      label: '0x523c...b4f2 | User address | Tenderly | Trigger ',
+      value: '0xAdf...aaEEF | User address | Tenderly | Trigger ',
+      label: '0xAdf...aaEEF | User address | Tenderly | Trigger ',
     },
     {
       value: 'Enter Custom...',
