@@ -93,6 +93,194 @@ function TransferActionConfiguration({
     },
   ];
 
+  if (showTest) {
+    return (
+      <Container>
+        <Header>
+          <Subheading variant="regular" text="⚡️ New Action" />
+          <Body variant="regular" text="setup > configure > TEST" />
+        </Header>
+        <HorizontalDivider />
+        <ConfigurationContainer>
+          <ButtonContainer>
+            <Subheading variant="regular" text="Event" />
+            <VerticalSpace size="S" />
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonTitle text="Token transfer by Andromeda" variant="medium" />
+            </ButtonCard>
+          </ButtonContainer>
+          <VerticalSpace size="XL" />
+          <ButtonContainer>
+            <Subheading variant="regular" text="Test" />
+            <VerticalSpace size="S" />
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonHeading text="Wallet" variant="medium" />
+              <ButtonTitle text={transferActionInformation.wallet} variant="medium" />
+            </ButtonCard>
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonHeading text="Token" variant="medium" />
+              <ButtonTitle text={transferActionInformation.token} variant="medium" />
+            </ButtonCard>
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonHeading text="Destination" variant="medium" />
+              <ButtonTitle text={transferActionInformation.destination} variant="medium" />
+            </ButtonCard>
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonHeading text="Amount" variant="medium" />
+              <ButtonTitle text={transferActionInformation.amount} variant="medium" />
+            </ButtonCard>
+          </ButtonContainer>
+          <VerticalSpace
+            size="XL"
+          />
+          <StyledButton
+            state={screeningState}
+            onClick={() => {
+              setScreeningState('loading');
+              setTimeout(() => {
+                const currentDate = new Date();
+                const niceFormat = currentDate.toLocaleDateString('en-CA');
+                setScreeningDate(niceFormat);
+                setScreeningState('active');
+              }, 2000);
+            }}
+          >
+            Screen with GoPlus+
+          </StyledButton>
+          { screeningDate && (
+          <div style={{ textAlign: 'right' }}>
+            Last Run:
+            {' '}
+            {screeningDate}
+          </div>
+          )}
+          <VerticalSpace size="XL" />
+          <StyledButton
+            state={simulationState}
+            onClick={() => {
+              setSimulationState('loading');
+              setTimeout(() => {
+                const currentDate = new Date();
+                const niceFormat = currentDate.toLocaleDateString('en-CA');
+                setSimulationDate(niceFormat);
+                setSimulationState('active');
+              }, 2000);
+            }}
+          >
+            Simulate with Tenderly
+          </StyledButton>
+          {simulationDate
+              && (
+                <div style={{ textAlign: 'right' }}>
+                  Last Run:
+                  {' '}
+                  {simulationDate}
+                </div>
+              )}
+        </ConfigurationContainer>
+      </Container>
+    );
+  }
+
+  if (transferActionInformation.wallet) {
+    return (
+      <Container>
+        <Header>
+          <Subheading variant="regular" text="⚡️ New Action" />
+          <Body variant="regular" text="setup > CONFIGURE > test" />
+        </Header>
+        <HorizontalDivider />
+        <ConfigurationContainer>
+          <ButtonContainer>
+            <Subheading variant="regular" text="Token" />
+            <VerticalSpace size="S" />
+            <Input
+              type="text"
+              placeholder="Add Token"
+              value={transferActionInformation.token}
+              onChange={(event: any) => {
+                setTransferActionInformation({
+                  ...transferActionInformation,
+                  token: (event.target.value),
+                });
+              }}
+            />
+          </ButtonContainer>
+          <VerticalSpace size="XL" />
+          {
+            transferActionInformation.token && (
+            <ButtonContainer>
+              <Subheading variant="regular" text="Destination" />
+              <VerticalSpace size="S" />
+              <Input
+                type="text"
+                placeholder="Add Destination"
+                value={transferActionInformation.destination}
+                onChange={(event: any) => {
+                  setTransferActionInformation({
+                    ...transferActionInformation,
+                    destination: (event.target.value),
+                  });
+                }}
+              />
+            </ButtonContainer>
+            )
+          }
+          <VerticalSpace size="XL" />
+          {
+            transferActionInformation.destination && (
+            <ButtonContainer>
+              <Subheading variant="regular" text="Amount" />
+              <VerticalSpace size="S" />
+              <Input
+                type="text"
+                placeholder="Add Amount"
+                value={transferActionInformation.amount}
+                onChange={(event: any) => {
+                  setTransferActionInformation({
+                    ...transferActionInformation,
+                    amount: (event.target.value),
+                  });
+                }}
+              />
+            </ButtonContainer>
+            )
+          }
+          <VerticalSpace size="XL" />
+          {
+            transferActionInformation.amount && (
+            <ButtonContainer>
+              <StyledButton
+                onClick={() => setShowTest(true)}
+              >
+                Test
+              </StyledButton>
+              <VerticalSpace
+                size="XL"
+              />
+            </ButtonContainer>
+            )
+          }
+        </ConfigurationContainer>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <Header>
@@ -101,239 +289,64 @@ function TransferActionConfiguration({
       </Header>
       <HorizontalDivider />
       <ConfigurationContainer>
-
-        {!showTest ? (
-          <>
-            <ButtonContainer>
-              <Subheading variant="regular" text="App" />
-              <VerticalSpace size="S" />
-              <ButtonCard onClick={() => {
-                showModal({
-                  component: <AppNameSelection
-                    hideModal={hideModal}
-                    transferActionInformation={transferActionInformation}
-                    setTransferActionInformation={setTransferActionInformation}
-                  />,
+        <ButtonContainer>
+          <Subheading variant="regular" text="App" />
+          <VerticalSpace size="S" />
+          <ButtonCard onClick={() => {
+            showModal({
+              component: <AppNameSelection
+                hideModal={hideModal}
+                transferActionInformation={transferActionInformation}
+                setTransferActionInformation={setTransferActionInformation}
+              />,
+            });
+          }}
+          >
+            <ButtonTitle text={transferActionInformation.app || 'Select App'} variant="medium" />
+            <ChevronDownIcon />
+          </ButtonCard>
+        </ButtonContainer>
+        <VerticalSpace size="XL" />
+        {
+          transferActionInformation.app && (
+          <ButtonContainer>
+            <Subheading variant="regular" text="Network" />
+            <VerticalSpace size="S" />
+            <Selector
+              options={networkOptions}
+              onChange={(event) => {
+                const network = event.target.value || '';
+                setTransferActionInformation({
+                  ...transferActionInformation,
+                  network: network as string,
                 });
               }}
-              >
-                <ButtonTitle text={transferActionInformation.app || 'Select App'} variant="medium" />
-                <ChevronDownIcon />
-              </ButtonCard>
-            </ButtonContainer>
-            <VerticalSpace size="XL" />
-            {
-      transferActionInformation.app && (
-      <ButtonContainer>
-        <Subheading variant="regular" text="Network" />
-        <VerticalSpace size="S" />
-        <Selector
-          options={networkOptions}
-          onChange={(event) => {
-            const network = event.target.value || '';
-            setTransferActionInformation({
-              ...transferActionInformation,
-              network: network as string,
-            });
-          }}
-          placeholder={transferActionInformation.network || 'Select Network'}
-        />
-      </ButtonContainer>
-      )
-    }
-            <VerticalSpace size="XL" />
-            {
-      transferActionInformation.network && (
-      <ButtonContainer>
-        <Subheading variant="regular" text="Wallet" />
-        <VerticalSpace size="S" />
-        <Input
-          type="text"
-          placeholder="Add Wallet"
-          value={transferActionInformation.wallet}
-          onChange={(event: any) => {
-            setTransferActionInformation({
-              ...transferActionInformation,
-              wallet: (event.target.value),
-            });
-          }}
-        />
-      </ButtonContainer>
-      )
-    }
-            <VerticalSpace size="XL" />
-            {
-      transferActionInformation.wallet && (
-      <ButtonContainer>
-        <Subheading variant="regular" text="Token" />
-        <VerticalSpace size="S" />
-        <Input
-          type="text"
-          placeholder="Add Token"
-          value={transferActionInformation.token}
-          onChange={(event: any) => {
-            setTransferActionInformation({
-              ...transferActionInformation,
-              token: (event.target.value),
-            });
-          }}
-        />
-      </ButtonContainer>
-      )
-    }
-            <VerticalSpace size="XL" />
-            {
-      transferActionInformation.token && (
-      <ButtonContainer>
-        <Subheading variant="regular" text="Destination" />
-        <VerticalSpace size="S" />
-        <Input
-          type="text"
-          placeholder="Add Destination"
-          value={transferActionInformation.destination}
-          onChange={(event: any) => {
-            setTransferActionInformation({
-              ...transferActionInformation,
-              destination: (event.target.value),
-            });
-          }}
-        />
-      </ButtonContainer>
-      )
-    }
-            <VerticalSpace size="XL" />
-            {
-      transferActionInformation.destination && (
-      <ButtonContainer>
-        <Subheading variant="regular" text="Amount" />
-        <VerticalSpace size="S" />
-        <Input
-          type="text"
-          placeholder="Add Amount"
-          value={transferActionInformation.amount}
-          onChange={(event: any) => {
-            setTransferActionInformation({
-              ...transferActionInformation,
-              amount: (event.target.value),
-            });
-          }}
-        />
-      </ButtonContainer>
-      )
-    }
-            {
-      transferActionInformation.amount && (
-      <ButtonContainer>
+              placeholder={transferActionInformation.network || 'Select Network'}
+            />
+          </ButtonContainer>
+          )
+        }
         <VerticalSpace size="XL" />
-        <StyledButton
-          onClick={() => setShowTest(true)}
-        >
-          Test
-        </StyledButton>
-        <VerticalSpace
-          size="XL"
-        />
-      </ButtonContainer>
-
-      )
-    }
-          </>
-        )
-          : (
-            <>
-              <ButtonContainer>
-                <Subheading variant="regular" text="Event" />
-                <VerticalSpace size="S" />
-                <ButtonCard
-                  onClick={() => {}}
-                  sx={{ height: '50px' }}
-                >
-                  <ButtonTitle text="Token transfer by Andromeda" variant="medium" />
-                </ButtonCard>
-              </ButtonContainer>
-              <VerticalSpace size="XL" />
-              <ButtonContainer>
-                <Subheading variant="regular" text="Test" />
-                <VerticalSpace size="S" />
-                <ButtonCard
-                  onClick={() => {}}
-                  sx={{ height: '50px' }}
-                >
-                  <ButtonHeading text="Wallet" variant="medium" />
-                  <ButtonTitle text={transferActionInformation.wallet} variant="medium" />
-                </ButtonCard>
-                <ButtonCard
-                  onClick={() => {}}
-                  sx={{ height: '50px' }}
-                >
-                  <ButtonHeading text="Token" variant="medium" />
-                  <ButtonTitle text={transferActionInformation.token} variant="medium" />
-                </ButtonCard>
-                <ButtonCard
-                  onClick={() => {}}
-                  sx={{ height: '50px' }}
-                >
-                  <ButtonHeading text="Destination" variant="medium" />
-                  <ButtonTitle text={transferActionInformation.destination} variant="medium" />
-                </ButtonCard>
-                <ButtonCard
-                  onClick={() => {}}
-                  sx={{ height: '50px' }}
-                >
-                  <ButtonHeading text="Amount" variant="medium" />
-                  <ButtonTitle text={transferActionInformation.amount} variant="medium" />
-                </ButtonCard>
-              </ButtonContainer>
-              <VerticalSpace
-                size="XL"
-              />
-              <StyledButton
-                state={screeningState}
-                onClick={() => {
-                  setScreeningState('loading');
-                  setTimeout(() => {
-                    const currentDate = new Date();
-                    const niceFormat = currentDate.toLocaleDateString('en-CA');
-                    setScreeningDate(niceFormat);
-                    setScreeningState('active');
-                  }, 2000);
-                }}
-              >
-                Screen with GoPlus+
-              </StyledButton>
-              { screeningDate && (
-                <div style={{ textAlign: 'right' }}>
-                  Last Run:
-                  {' '}
-                  {screeningDate}
-                </div>
-              )}
-              <VerticalSpace size="XL" />
-              <StyledButton
-                state={simulationState}
-                onClick={() => {
-                  setSimulationState('loading');
-                  setTimeout(() => {
-                    const currentDate = new Date();
-                    const niceFormat = currentDate.toLocaleDateString('en-CA');
-                    setSimulationDate(niceFormat);
-                    setSimulationState('active');
-                  }, 2000);
-                }}
-              >
-                Simulate with Tenderly
-              </StyledButton>
-              {simulationDate
-              && (
-                <div style={{ textAlign: 'right' }}>
-                  Last Run:
-                  {' '}
-                  {simulationDate}
-                </div>
-              )}
-            </>
-          )}
-
+        {
+          transferActionInformation.network && (
+          <ButtonContainer>
+            <Subheading variant="regular" text="Wallet" />
+            <VerticalSpace size="S" />
+            <Input
+              type="text"
+              placeholder="Add Wallet"
+              value={transferActionInformation.wallet}
+              onChange={(event: any) => {
+                setTransferActionInformation({
+                  ...transferActionInformation,
+                  wallet: (event.target.value),
+                });
+              }}
+            />
+          </ButtonContainer>
+          )
+        }
+        <VerticalSpace size="XL" />
       </ConfigurationContainer>
     </Container>
   );
