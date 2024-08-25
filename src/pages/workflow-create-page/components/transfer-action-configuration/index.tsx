@@ -76,7 +76,6 @@ function TransferActionConfiguration({
   setTransferActionInformation,
 }: TransferActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
-  const [showTest, setShowTest] = useState(false);
   const [screeningDate, setScreeningDate] = useState('');
   const [simulationDate, setSimulationDate] = useState('');
   const [screeningState, setScreeningState] = useState<'active' | 'loading'>('active');
@@ -93,7 +92,18 @@ function TransferActionConfiguration({
     },
   ];
 
-  if (showTest) {
+  const testWithGoPlusOptions = [
+    {
+      value: true,
+      label: 'True',
+    },
+    {
+      value: false,
+      label: 'False',
+    },
+  ];
+
+  if (transferActionInformation.testWithGoPlus !== undefined) {
     return (
       <Container>
         <Header>
