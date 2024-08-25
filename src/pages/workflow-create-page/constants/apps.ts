@@ -11,6 +11,7 @@ import customerIoLogo from 'assets/images/customer-io-logo.svg';
 import oneInchLogo from 'assets/images/1inch-logo.svg';
 import aveLogo from 'assets/images/ave-logo.svg';
 import alchemyLogo from 'assets/images/alchemy-logo.svg';
+import tenderlyLogo from 'assets/images/tenderly-logo.svg';
 
 const web2Apps = [
   {
@@ -72,20 +73,20 @@ const web3Apps = [
 
 const dev1Apps = [
   {
-    name: 'Alchemy by Andromeda',
+    name: 'Alchemy',
     logo: alchemyLogo,
   },
   {
-    name: 'Tenderly by Andromeda',
-    logo: defaultLogo,
-  },
-  {
-    name: 'Webhooks by Andromeda',
-    logo: defaultLogo,
+    name: 'Tenderly',
+    logo: tenderlyLogo,
   },
 ];
 
 const dev2Apps = [
+  {
+    name: 'Webhooks by Andromeda',
+    logo: defaultLogo,
+  },
   {
     name: 'Token transfer by Andromeda',
     logo: andromedaLogo,
