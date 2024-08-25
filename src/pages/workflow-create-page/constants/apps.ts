@@ -85,7 +85,7 @@ const dev1Apps = [
 const dev2Apps = [
   {
     name: 'Webhooks',
-    logo: defaultLogo,
+    logo: andromedaLogo,
   },
   {
     name: 'Token Transfer',
