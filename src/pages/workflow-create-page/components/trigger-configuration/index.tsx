@@ -155,7 +155,7 @@ function TriggerConfiguration({
                 />
                 {triggerInformation.decodingAbi && (
                   <Typography style={{ marginLeft: 10 }}>
-                    {triggerInformation.abiDecoded ? 'ABI Decoded' : 'ABI Decoding'}
+                    {triggerInformation.abiDecoded ? 'ABI Decoded' : 'AI Decoding'}
                   </Typography>
                 )}
               </div>

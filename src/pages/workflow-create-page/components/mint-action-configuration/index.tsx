@@ -1,4 +1,5 @@
 import { Box, Typography, styled } from '@mui/material';
+import { useState } from 'react';
 import { ActionCard } from 'components/cards';
 import { HorizontalDivider } from 'components/dividers';
 import ChevronDownIcon from 'components/icons/chevron-down-icon';
@@ -9,6 +10,7 @@ import { MintActionInformation } from 'pages/workflow-create-page/types';
 import AppNameSelection from './app-name-selection';
 import { Selector } from 'components/select';
 import { Input } from 'components/inputs';
+import { ContainedButton } from 'components/buttons';
 
 const Container = styled('div')`
   width: 70vh;
@@ -16,6 +18,15 @@ const Container = styled('div')`
   text-align: center;
   
 `;
+
+const StyledButton = styled(ContainedButton)({
+  backgroundColor: '#3D4E6A',
+  color: 'white',
+  '&:hover': {
+    backgroundColor: '#3D4E6A',
+  },
+  width: '100%',
+});
 
 const Header = styled('div')`
   display: flex;
@@ -40,13 +51,19 @@ const ButtonContainer = styled(Box)`
   text-align: left;
 `;
 
-const Button = styled(ActionCard)`
+const ButtonCard = styled(ActionCard)`
   justify-content: space-between;
   padding: 0 1rem;
 `;
 
 const ButtonTitle = styled(Body)`
   width: fit-content;
+`;
+
+const ButtonHeading = styled(Subheading)`
+  width: fit-content;
+  color: black;
+  font-weight: 600;
 `;
 
 interface MintActionConfigurationProps {
@@ -59,6 +76,11 @@ function MintActionConfiguration({
   setMintActionInformation,
 }: MintActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
+  const [showTest, setShowTest] = useState(false);
+  const [screeningDate, setScreeningDate] = useState('');
+  const [simulationDate, setSimulationDate] = useState('');
+  const [screeningState, setScreeningState] = useState<'active' | 'loading'>('active');
+  const [simulationState, setSimulationState] = useState<'active' | 'loading'>('active');
 
   const networkOptions = [
     {
@@ -73,12 +95,12 @@ function MintActionConfiguration({
 
   const eventOptions = [
     {
-      value: 'Airdrop requested',
-      label: 'Airdrop requested',
+      value: 'Mint',
+      label: 'Mint',
     },
     {
-      value: 'Transaction signed',
-      label: 'Transaction signed',
+      value: 'Redeem',
+      label: 'Redeem',
     },
   ];
 
@@ -90,25 +112,27 @@ function MintActionConfiguration({
       </Header>
       <HorizontalDivider />
       <ConfigurationContainer>
-        <ButtonContainer>
-          <Subheading variant="regular" text="App" />
-          <VerticalSpace size="S" />
-          <Button onClick={() => {
-            showModal({
-              component: <AppNameSelection
-                hideModal={hideModal}
-                mintActionInformation={mintActionInformation}
-                setMintActionInformation={setMintActionInformation}
-              />,
-            });
-          }}
-          >
-            <ButtonTitle text={mintActionInformation.app || 'Select App'} variant="medium" />
-            <ChevronDownIcon />
-          </Button>
-        </ButtonContainer>
-        <VerticalSpace size="XL" />
-        {
+        {!showTest ? (
+          <>
+            <ButtonContainer>
+              <Subheading variant="regular" text="App" />
+              <VerticalSpace size="S" />
+              <ButtonCard onClick={() => {
+                showModal({
+                  component: <AppNameSelection
+                    hideModal={hideModal}
+                    mintActionInformation={mintActionInformation}
+                    setMintActionInformation={setMintActionInformation}
+                  />,
+                });
+              }}
+              >
+                <ButtonTitle text={mintActionInformation.app || 'Select App'} variant="medium" />
+                <ChevronDownIcon />
+              </ButtonCard>
+            </ButtonContainer>
+            <VerticalSpace size="XL" />
+            {
           mintActionInformation.app && (
           <ButtonContainer>
             <Subheading variant="regular" text="Network" />
@@ -127,8 +151,8 @@ function MintActionConfiguration({
           </ButtonContainer>
           )
         }
-        <VerticalSpace size="XL" />
-        {
+            <VerticalSpace size="XL" />
+            {
           mintActionInformation.network && (
           <ButtonContainer>
             <Subheading variant="regular" text="Contract Address" />
@@ -155,18 +179,18 @@ function MintActionConfiguration({
               />
               {mintActionInformation.decodingAbi && (
               <Typography style={{ marginLeft: 10 }}>
-                {mintActionInformation.abiDecoded ? 'ABI Decoded' : 'ABI Decoding'}
+                {mintActionInformation.abiDecoded ? 'ABI Decoded' : 'AI Decoding'}
               </Typography>
               )}
             </div>
           </ButtonContainer>
           )
         }
-        <VerticalSpace size="XL" />
-        {
+            <VerticalSpace size="XL" />
+            {
           mintActionInformation.contractAddress && mintActionInformation.abiDecoded && (
           <ButtonContainer>
-            <Subheading variant="regular" text="Event" />
+            <Subheading variant="regular" text="Method" />
             <VerticalSpace size="S" />
             <Selector
               options={eventOptions}
@@ -182,6 +206,109 @@ function MintActionConfiguration({
           </ButtonContainer>
           )
         }
+            <VerticalSpace
+              size="XL"
+            />
+            {
+              mintActionInformation.event && (
+                <StyledButton
+                  onClick={() => {
+                    setShowTest(true);
+                  }}
+                >
+                  <Typography>Test</Typography>
+                </StyledButton>
+              )
+            }
+          </>
+        ) : (
+          <>
+            <ButtonContainer>
+              <Subheading variant="regular" text="Event" />
+              <VerticalSpace size="S" />
+              <ButtonCard
+                onClick={() => {}}
+                sx={{ height: '50px' }}
+              >
+                <ButtonTitle text="Mint (write)" variant="medium" />
+              </ButtonCard>
+            </ButtonContainer>
+            <VerticalSpace size="XL" />
+            <ButtonContainer>
+              <Subheading variant="regular" text="Test" />
+              <VerticalSpace size="S" />
+              <ButtonCard
+                onClick={() => {}}
+                sx={{ height: '50px' }}
+              >
+                <ButtonHeading text="Contract" variant="medium" />
+                <ButtonTitle text={mintActionInformation.contractAddress} variant="medium" />
+              </ButtonCard>
+              <ButtonCard
+                onClick={() => {}}
+                sx={{ height: '50px' }}
+              >
+                <ButtonHeading text="Event" variant="medium" />
+                <ButtonTitle text={mintActionInformation.event} variant="medium" />
+              </ButtonCard>
+              <ButtonCard
+                onClick={() => {}}
+                sx={{ height: '50px' }}
+              >
+                <ButtonHeading text="Destination" variant="medium" />
+                <ButtonTitle text={mintActionInformation.contractAddress} variant="medium" />
+              </ButtonCard>
+            </ButtonContainer>
+            <VerticalSpace
+              size="XL"
+            />
+            <StyledButton
+              state={screeningState}
+              onClick={() => {
+                setScreeningState('loading');
+                setTimeout(() => {
+                  const currentDate = new Date();
+                  const niceFormat = currentDate.toLocaleDateString('en-CA');
+                  setScreeningDate(niceFormat);
+                  setScreeningState('active');
+                }, 2000);
+              }}
+            >
+              Screen with GoPlus+
+            </StyledButton>
+            { screeningDate && (
+            <div style={{ textAlign: 'right' }}>
+              Last Run:
+              {' '}
+              {screeningDate}
+            </div>
+            )}
+            <VerticalSpace size="XL" />
+            <StyledButton
+              state={simulationState}
+              onClick={() => {
+                setSimulationState('loading');
+                setTimeout(() => {
+                  const currentDate = new Date();
+                  const niceFormat = currentDate.toLocaleDateString('en-CA');
+                  setSimulationDate(niceFormat);
+                  setSimulationState('active');
+                }, 2000);
+              }}
+            >
+              Simulate With Tenderly
+            </StyledButton>
+            {simulationDate
+              && (
+                <div style={{ textAlign: 'right' }}>
+                  Last Run:
+                  {' '}
+                  {simulationDate}
+                </div>
+              )}
+          </>
+        )}
+
       </ConfigurationContainer>
     </Container>
   );
