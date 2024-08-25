@@ -93,20 +93,20 @@ function ConfigurationSection({
     );
   }
 
-  if (nodeId === '4') {
-    return (
-      <SimulationActionConfiguration
-        simulationActionInformation={simulationActionInformation}
-        setSimulationActionInformation={setSimulationActionInformation}
-      />
-    );
-  }
-
   if (nodeId === '3') {
     return (
       <DiscordActionConfiguration
         discordActionInformation={discordActionInformation}
         setDiscordActionInformation={setDiscordActionInformation}
+      />
+    );
+  }
+
+  if (nodeId === '4') {
+    return (
+      <SimulationActionConfiguration
+        simulationActionInformation={simulationActionInformation}
+        setSimulationActionInformation={setSimulationActionInformation}
       />
     );
   }

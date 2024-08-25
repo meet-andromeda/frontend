@@ -1,5 +1,4 @@
 import { Box, Typography, styled } from '@mui/material';
-import { useState } from 'react';
 import { ActionCard } from 'components/cards';
 import { HorizontalDivider } from 'components/dividers';
 import ChevronDownIcon from 'components/icons/chevron-down-icon';
@@ -60,10 +59,6 @@ function MintActionConfiguration({
   setMintActionInformation,
 }: MintActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
-  const [decodingAbi, setDecodingAbi] = useState(false);
-  const [abiDecoded, setAbiDecoded] = useState(false);
-  const [decodingEvent, setDecodingEvent] = useState(false);
-  const [eventDecoded, setEventDecoded] = useState(false);
 
   const networkOptions = [
     {
@@ -146,16 +141,21 @@ function MintActionConfiguration({
                   setMintActionInformation({
                     ...mintActionInformation,
                     contractAddress: (event.target.value),
+                    decodingAbi: true,
+                    abiDecoded: false,
                   });
-                  setDecodingAbi(true);
                   setTimeout(() => {
-                    setAbiDecoded(true);
+                    setMintActionInformation({
+                      ...mintActionInformation,
+                      contractAddress: (event.target.value),
+                      abiDecoded: true,
+                    });
                   }, 2000);
                 }}
               />
-              {decodingAbi && (
+              {mintActionInformation.decodingAbi && (
               <Typography style={{ marginLeft: 10 }}>
-                {abiDecoded ? 'ABI Decoded' : 'ABI Decoding'}
+                {mintActionInformation.abiDecoded ? 'ABI Decoded' : 'ABI Decoding'}
               </Typography>
               )}
             </div>
@@ -164,7 +164,7 @@ function MintActionConfiguration({
         }
         <VerticalSpace size="XL" />
         {
-          mintActionInformation.contractAddress && abiDecoded && (
+          mintActionInformation.contractAddress && mintActionInformation.abiDecoded && (
           <ButtonContainer>
             <Subheading variant="regular" text="Event" />
             <VerticalSpace size="S" />
@@ -176,20 +176,9 @@ function MintActionConfiguration({
                   ...mintActionInformation,
                   event: network as string,
                 });
-                setDecodingEvent(true);
-                setTimeout(() => {
-                  setEventDecoded(true);
-                }, 2000);
               }}
               placeholder={mintActionInformation.event || 'Select Event'}
             />
-            {
-              decodingEvent && (
-                <Typography style={{ marginLeft: 10 }}>
-                  {eventDecoded ? 'Event Decoded' : 'Event Decoding'}
-                </Typography>
-              )
-            }
           </ButtonContainer>
           )
         }
