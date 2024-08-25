@@ -7,7 +7,6 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { useAccount, useBalance } from 'wagmi';
 import shortenAddress from 'web3/helpers/shorten-address';
-import useGetUserData from 'hooks/use-get-user-data';
 import { HorizontalSpace } from 'components/spacing';
 import useGetErc20Balance from 'hooks/use-get-erc20-balance';
 
@@ -31,13 +30,10 @@ const StyledCircleWalletButton = styled(Button)({
   width: '250px',
 });
 
-export default function ButtonAppBar(): any {
+export default function ButtonAppBar({ circleUserAddress }:any): any {
   const {
     address,
   } = useAccount();
-  const { circleUserAddress } = useGetUserData(
-    address || '',
-  );
 
   const {
     balance,
