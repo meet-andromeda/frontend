@@ -8,6 +8,7 @@ import { useModalContext } from 'contexts/modal-context';
 import { TransferActionInformation } from 'pages/workflow-create-page/types';
 import AppNameSelection from './app-name-selection';
 import { Input } from 'components/inputs';
+import { Selector } from 'components/select';
 
 const Container = styled('div')`
   width: 70vh;
@@ -27,7 +28,7 @@ const Header = styled('div')`
 `;
 
 const ConfigurationContainer = styled('div')`
-  padding: 4rem 4rem;
+  padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
 `;
@@ -59,6 +60,17 @@ function TransferActionConfiguration({
 }: TransferActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
 
+  const networkOptions = [
+    {
+      value: 'Ethereum (mainnet)',
+      label: 'Ethereum (mainnet)',
+    },
+    {
+      value: 'Polygon',
+      label: 'Polygon',
+    },
+  ];
+
   return (
     <Container>
       <Header>
@@ -87,6 +99,26 @@ function TransferActionConfiguration({
         <VerticalSpace size="XL" />
         {
           transferActionInformation.app && (
+          <ButtonContainer>
+            <Subheading variant="regular" text="Network" />
+            <VerticalSpace size="S" />
+            <Selector
+              options={networkOptions}
+              onChange={(event) => {
+                const network = event.target.value || '';
+                setTransferActionInformation({
+                  ...transferActionInformation,
+                  network: network as string,
+                });
+              }}
+              placeholder={transferActionInformation.network || 'Select Network'}
+            />
+          </ButtonContainer>
+          )
+        }
+        <VerticalSpace size="XL" />
+        {
+          transferActionInformation.network && (
           <ButtonContainer>
             <Subheading variant="regular" text="Wallet" />
             <VerticalSpace size="S" />

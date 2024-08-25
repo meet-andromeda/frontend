@@ -93,7 +93,7 @@ function ConfigurationSection({
     );
   }
 
-  if (nodeId === '3') {
+  if (nodeId === '1000') {
     return (
       <SimulationActionConfiguration
         simulationActionInformation={simulationActionInformation}
@@ -102,7 +102,7 @@ function ConfigurationSection({
     );
   }
 
-  if (nodeId === '4') {
+  if (nodeId === '3') {
     return (
       <DiscordActionConfiguration
         discordActionInformation={discordActionInformation}
