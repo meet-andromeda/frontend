@@ -38,7 +38,7 @@ const StyledLoadingButton = styled(LoadingButton)`
   border-radius: 0.625rem;
 
   & .MuiLoadingButton-loadingIndicator {
-    color: ${(props) => props.theme.palette.primary.contrastText};
+    color: ${(props) => props.theme.palette.primary.light};
   }
 `;
 
