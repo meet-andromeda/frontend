@@ -11,7 +11,7 @@ interface MintActionInformation {
   amount?: string;
   chainlinkVrfMultiplier?: string;
   destination?: string;
-  testWithGoPlus?: boolean;
+  testWithGoPlus?: string;
 }
 
 export default MintActionInformation;
