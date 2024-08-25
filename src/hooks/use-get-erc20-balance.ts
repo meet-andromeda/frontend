@@ -40,7 +40,7 @@ const useGetErc20Balance = ({ userAddress }: UseGetErc20BalanceProps): UseGetErc
       if (data) {
         setBalance((Number(data) / (10 ** 6)).toFixed(2));
       } else {
-        setBalance('');
+        setBalance('0.00');
       }
     };
     isAdminResponse();

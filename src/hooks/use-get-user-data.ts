@@ -3,14 +3,15 @@ import { useState, useEffect } from 'react';
 import apiRequests from 'helpers/api-requests';
 
 const useGetUserData = (userAddress: string): any => {
-  const [userData, setUserData] = useState<any>(null);
+  const [circleUserAddress, setCircleUserAddress] = useState<any>(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUser = async (): Promise<void> => {
       try {
-        const response = await apiRequests.get(`https://api.meetandromeda.com/user/${userAddress}`);
-        setUserData(response);
+        const response: any = await apiRequests
+          .get(`https://api.meetandromeda.com/users/${userAddress}`);
+        setCircleUserAddress(response.wallets[137].address);
       } catch (catchError) {
         setError(error);
       }
@@ -23,7 +24,7 @@ const useGetUserData = (userAddress: string): any => {
     userAddress,
     error]);
 
-  return { userData, error };
+  return { circleUserAddress, error };
 };
 
 export default useGetUserData;
