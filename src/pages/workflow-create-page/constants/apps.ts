@@ -12,6 +12,9 @@ import oneInchLogo from 'assets/images/1inch-logo.svg';
 import aveLogo from 'assets/images/ave-logo.svg';
 import alchemyLogo from 'assets/images/alchemy-logo.svg';
 import tenderlyLogo from 'assets/images/tenderly-logo.svg';
+import compoundLogo from 'assets/images/compound-comp-logo.svg';
+import lidoLogo from 'assets/images/lido-logo.svg';
+import circleLogo from 'assets/images/circle-svg.svg';
 
 const web2Apps = [
   {
@@ -59,15 +62,15 @@ const web3Apps = [
   },
   {
     name: 'Compound',
-    logo: defaultLogo,
+    logo: compoundLogo,
   },
   {
-    name: 'Bridge',
-    logo: defaultLogo,
+    name: 'Circle',
+    logo: circleLogo,
   },
   {
     name: 'Lido',
-    logo: defaultLogo,
+    logo: lidoLogo,
   },
 ];
 
