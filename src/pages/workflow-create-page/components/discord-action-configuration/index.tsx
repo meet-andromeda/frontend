@@ -49,6 +49,15 @@ const ButtonTitle = styled(Body)`
   width: fit-content;
 `;
 
+const StyledButton = styled(ContainedButton)({
+  backgroundColor: '#3D4E6A',
+  color: 'white',
+  '&:hover': {
+    backgroundColor: '#3D4E6A',
+  },
+  width: '100%',
+});
+
 interface DiscordActionConfigurationProps {
   discordActionInformation: DiscordActionInformation;
   setDiscordActionInformation: (discordActionInformation: DiscordActionInformation) => void;
@@ -228,7 +237,7 @@ function DiscordActionConfiguration({
                     />
                   )
                   : (
-                    <ContainedButton onClick={() => {
+                    <StyledButton onClick={() => {
                       setDiscordActionInformation({
                         ...discordActionInformation,
                         account: 'Discord Arch (ID:09029423922)',
@@ -236,7 +245,7 @@ function DiscordActionConfiguration({
                     }}
                     >
                       Connect Discord
-                    </ContainedButton>
+                    </StyledButton>
                   )
               }
             </ButtonContainer>
