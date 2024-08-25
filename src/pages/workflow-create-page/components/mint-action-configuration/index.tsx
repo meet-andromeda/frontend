@@ -310,7 +310,7 @@ function MintActionConfiguration({
                       testWithGoPlus: test as boolean,
                     });
                   }}
-                  placeholder={mintActionInformation.event || 'Select Event'}
+                  placeholder={mintActionInformation.testWithGoPlus || 'Test with GoPLus'}
                 />
               </ButtonContainer>
             )

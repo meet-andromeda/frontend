@@ -264,18 +264,24 @@ function TransferActionConfiguration({
           <VerticalSpace size="XL" />
           {
             transferActionInformation.amount && (
-            <ButtonContainer>
-              <StyledButton
-                onClick={() => setShowTest(true)}
-              >
-                Test
-              </StyledButton>
-              <VerticalSpace
-                size="XL"
-              />
-            </ButtonContainer>
+              <ButtonContainer>
+                <Subheading variant="regular" text="Test with GoPLus" />
+                <VerticalSpace size="S" />
+                <Selector
+                  options={testWithGoPlusOptions}
+                  onChange={(event) => {
+                    const test = event.target.value || true;
+                    setTransferActionInformation({
+                      ...transferActionInformation,
+                      testWithGoPlus: test as boolean,
+                    });
+                  }}
+                  placeholder={transferActionInformation.testWithGoPlus || 'Test with GoPLus'}
+                />
+              </ButtonContainer>
             )
-          }
+            }
+          <VerticalSpace size="XL" />
         </ConfigurationContainer>
       </Container>
     );
