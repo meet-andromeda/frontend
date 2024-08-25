@@ -1,4 +1,5 @@
 import { Box, styled } from '@mui/material';
+import { useState } from 'react';
 import { ActionCard } from 'components/cards';
 import { HorizontalDivider } from 'components/dividers';
 import ChevronDownIcon from 'components/icons/chevron-down-icon';
@@ -58,6 +59,17 @@ const StyledButton = styled(ContainedButton)({
   width: '100%',
 });
 
+const ButtonCard = styled(ActionCard)`
+  justify-content: space-between;
+  padding: 0 1rem;
+`;
+
+const ButtonHeading = styled(Subheading)`
+  width: fit-content;
+  color: black;
+  font-weight: 600;
+`;
+
 interface DiscordActionConfigurationProps {
   discordActionInformation: DiscordActionInformation;
   setDiscordActionInformation: (discordActionInformation: DiscordActionInformation) => void;
@@ -68,6 +80,8 @@ function DiscordActionConfiguration({
   setDiscordActionInformation,
 }: DiscordActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
+  const [simulationDate, setSimulationDate] = useState('');
+  const [simulationState, setSimulationState] = useState<'active' | 'loading'>('active');
 
   const eventOptions = [
     {
@@ -122,7 +136,84 @@ function DiscordActionConfiguration({
           <Body variant="regular" text="setup > configure > TEST" />
         </Header>
         <HorizontalDivider />
-        <ConfigurationContainer />
+        <ConfigurationContainer>
+          <ButtonContainer>
+            <Subheading variant="regular" text="Event" />
+            <VerticalSpace size="S" />
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonTitle text="Airdrop requested (listen)" variant="medium" />
+            </ButtonCard>
+          </ButtonContainer>
+          <VerticalSpace size="XL" />
+          <ButtonContainer>
+            <Subheading variant="regular" text="Test" />
+            <VerticalSpace size="S" />
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonHeading text="Account" variant="medium" />
+              <ButtonTitle text={discordActionInformation.account} variant="medium" />
+            </ButtonCard>
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonHeading text="Channel" variant="medium" />
+              <ButtonTitle text={discordActionInformation.channel} variant="medium" />
+            </ButtonCard>
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonHeading text="Bot Name" variant="medium" />
+              <ButtonTitle text={discordActionInformation.botName} variant="medium" />
+            </ButtonCard>
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonHeading text="Message 1" variant="medium" />
+              <ButtonTitle text={discordActionInformation.message1} variant="medium" />
+            </ButtonCard>
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonHeading text="Message 2" variant="medium" />
+              <ButtonTitle text={discordActionInformation.message2} variant="medium" />
+            </ButtonCard>
+          </ButtonContainer>
+          <VerticalSpace
+            size="XL"
+          />
+          <VerticalSpace size="XL" />
+          <StyledButton
+            state={simulationState}
+            onClick={() => {
+              setSimulationState('loading');
+              setTimeout(() => {
+                const currentDate = new Date();
+                const niceFormat = currentDate.toLocaleDateString('en-CA');
+                setSimulationDate(niceFormat);
+                setSimulationState('active');
+              }, 2000);
+            }}
+          >
+            Test
+          </StyledButton>
+          {simulationDate
+            && (
+              <div style={{ textAlign: 'right' }}>
+                ✔ Last Run:
+                {' '}
+                Less than one minute ago
+              </div>
+            )}
+        </ConfigurationContainer>
       </Container>
 
     );
@@ -184,6 +275,7 @@ function DiscordActionConfiguration({
                   message1: (event.target.value),
                 });
               }}
+              placeholder={discordActionInformation.message1 || 'Add Message'}
             />
             <VerticalSpace size="S" />
             <Selector
@@ -194,7 +286,7 @@ function DiscordActionConfiguration({
                   message2: event.target.value || '' as string,
                 });
               }}
-              placeholder={discordActionInformation.event || 'Select Event'}
+              placeholder={discordActionInformation.message2 || 'Select Message'}
             />
           </ButtonContainer>
           )
