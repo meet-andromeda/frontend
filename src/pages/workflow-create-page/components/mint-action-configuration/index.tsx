@@ -260,21 +260,39 @@ function MintActionConfiguration({
           <VerticalSpace size="XL" />
           {
             mintActionInformation.wallet && (
-              <ButtonContainer>
-                <Subheading variant="regular" text="Chainlink Vrf Multiplier" />
-                <VerticalSpace size="S" />
-                <Input
-                  type="text"
-                  placeholder="Add Amount"
-                  value={mintActionInformation.chainlinkVrfMultiplier}
-                  onChange={(event: any) => {
-                    setMintActionInformation({
-                      ...mintActionInformation,
-                      chainlinkVrfMultiplier: (event.target.value),
-                    });
-                  }}
-                />
-              </ButtonContainer>
+              <>
+                <ButtonContainer>
+                  <Subheading variant="regular" text="Amount" />
+                  <VerticalSpace size="S" />
+                  <Input
+                    type="text"
+                    placeholder="Add Amount"
+                    value={mintActionInformation.amount}
+                    onChange={(event: any) => {
+                      setMintActionInformation({
+                        ...mintActionInformation,
+                        amount: (event.target.value),
+                      });
+                    }}
+                  />
+                </ButtonContainer>
+                <VerticalSpace size="XL" />
+                <ButtonContainer>
+                  <Subheading variant="regular" text="Chainlink VRF Multiplier" />
+                  <VerticalSpace size="S" />
+                  <Input
+                    type="text"
+                    placeholder="Add Amount"
+                    value={mintActionInformation.chainlinkVrfMultiplier}
+                    onChange={(event: any) => {
+                      setMintActionInformation({
+                        ...mintActionInformation,
+                        chainlinkVrfMultiplier: (event.target.value),
+                      });
+                    }}
+                  />
+                </ButtonContainer>
+              </>
             )
           }
           <VerticalSpace size="XL" />

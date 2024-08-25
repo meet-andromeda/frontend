@@ -8,6 +8,7 @@ interface MintActionInformation {
   decodingAbi?: boolean;
   abiDecoded?: boolean;
   wallet?: string;
+  amount?: string;
   chainlinkVrfMultiplier?: string;
   destination?: string;
   testWithGoPlus?: boolean;
