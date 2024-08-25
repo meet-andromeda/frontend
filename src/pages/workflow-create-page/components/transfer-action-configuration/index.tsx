@@ -1,5 +1,4 @@
 import { Box, styled } from '@mui/material';
-// import { useState } from 'react';
 import { ActionCard } from 'components/cards';
 import { HorizontalDivider } from 'components/dividers';
 import ChevronDownIcon from 'components/icons/chevron-down-icon';
@@ -8,8 +7,7 @@ import { Body, Subheading } from 'components/typographies';
 import { useModalContext } from 'contexts/modal-context';
 import { TransferActionInformation } from 'pages/workflow-create-page/types';
 import AppNameSelection from './app-name-selection';
-// import { Selector } from 'components/select';
-// import { Input } from 'components/inputs';
+import { Input } from 'components/inputs';
 
 const Container = styled('div')`
   width: 70vh;
@@ -29,7 +27,7 @@ const Header = styled('div')`
 `;
 
 const ConfigurationContainer = styled('div')`
-  padding: 8rem 4rem;
+  padding: 4rem 4rem;
   display: flex;
   flex-direction: column;
 `;
@@ -60,32 +58,6 @@ function TransferActionConfiguration({
   setTransferActionInformation,
 }: TransferActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
-  // const [decodingAbi, setDecodingAbi] = useState(false);
-  // const [abiDecoded, setAbiDecoded] = useState(false);
-  // const [decodingEvent, setDecodingEvent] = useState(false);
-  // const [eventDecoded, setEventDecoded] = useState(false);
-
-  // const networkOptions = [
-  //   {
-  //     value: 'Ethereum (mainnet)',
-  //     label: 'Ethereum (mainnet)',
-  //   },
-  //   {
-  //     value: 'Polygon',
-  //     label: 'Polygon',
-  //   },
-  // ];
-
-  // const eventOptions = [
-  //   {
-  //     value: 'Airdrop requested',
-  //     label: 'Airdrop requested',
-  //   },
-  //   {
-  //     value: 'Transaction signed',
-  //     label: 'Transaction signed',
-  //   },
-  // ];
 
   return (
     <Container>
@@ -113,86 +85,86 @@ function TransferActionConfiguration({
           </Button>
         </ButtonContainer>
         <VerticalSpace size="XL" />
-        {/* {
-          mintActionInformation.app && (
+        {
+          transferActionInformation.app && (
           <ButtonContainer>
-            <Subheading variant="regular" text="Network" />
+            <Subheading variant="regular" text="Wallet" />
             <VerticalSpace size="S" />
-            <Selector
-              options={networkOptions}
-              onChange={(event) => {
-                const network = event.target.value || '';
-                setMintActionInformation({
-                  ...mintActionInformation,
-                  network: network as string,
+            <Input
+              type="text"
+              placeholder="Add Wallet"
+              value={transferActionInformation.wallet}
+              onChange={(event: any) => {
+                setTransferActionInformation({
+                  ...transferActionInformation,
+                  wallet: (event.target.value),
                 });
               }}
-              placeholder={mintActionInformation.network || 'Select Network'}
             />
           </ButtonContainer>
           )
         }
         <VerticalSpace size="XL" />
         {
-          mintActionInformation.network && (
+          transferActionInformation.wallet && (
           <ButtonContainer>
-            <Subheading variant="regular" text="Contract Address" />
+            <Subheading variant="regular" text="Token" />
             <VerticalSpace size="S" />
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <Input
-                type="text"
-                value={mintActionInformation.contractAddress}
-                onChange={(event) => {
-                  setMintActionInformation({
-                    ...mintActionInformation,
-                    contractAddress: (event.target.value),
-                  });
-                  setDecodingAbi(true);
-                  setTimeout(() => {
-                    setAbiDecoded(true);
-                  }, 2000);
-                }}
-              />
-              {decodingAbi && (
-              <Typography style={{ marginLeft: 10 }}>
-                {abiDecoded ? 'ABI Decoded' : 'ABI Decoding'}
-              </Typography>
-              )}
-            </div>
+            <Input
+              type="text"
+              placeholder="Add Token"
+              value={transferActionInformation.token}
+              onChange={(event: any) => {
+                setTransferActionInformation({
+                  ...transferActionInformation,
+                  token: (event.target.value),
+                });
+              }}
+            />
           </ButtonContainer>
           )
         }
         <VerticalSpace size="XL" />
         {
-          mintActionInformation.contractAddress && abiDecoded && (
+          transferActionInformation.token && (
           <ButtonContainer>
-            <Subheading variant="regular" text="Event" />
+            <Subheading variant="regular" text="Destination" />
             <VerticalSpace size="S" />
-            <Selector
-              options={eventOptions}
-              onChange={(event) => {
-                const network = event.target.value || '';
-                setMintActionInformation({
-                  ...mintActionInformation,
-                  event: network as string,
+            <Input
+              type="text"
+              placeholder="Add Destination"
+              value={transferActionInformation.destination}
+              onChange={(event: any) => {
+                setTransferActionInformation({
+                  ...transferActionInformation,
+                  destination: (event.target.value),
                 });
-                setDecodingEvent(true);
-                setTimeout(() => {
-                  setEventDecoded(true);
-                }, 2000);
               }}
-              placeholder={mintActionInformation.event || 'Select Event'}
             />
-            {
-              decodingEvent && (
-                <Typography style={{ marginLeft: 10 }}>
-                  {eventDecoded ? 'Event Decoded' : 'Event Decoding'}
-                </Typography>
-              )
-            }
           </ButtonContainer>
           )
-        } */}
+        }
+        <VerticalSpace size="XL" />
+        {
+          transferActionInformation.destination && (
+          <ButtonContainer>
+            <Subheading variant="regular" text="Amount" />
+            <VerticalSpace size="S" />
+            <Input
+              type="text"
+              placeholder="Add Amount"
+              value={transferActionInformation.amount}
+              onChange={(event: any) => {
+                setTransferActionInformation({
+                  ...transferActionInformation,
+                  amount: (event.target.value),
+                });
+              }}
+            />
+          </ButtonContainer>
+          )
+        }
+        <VerticalSpace size="XL" />
       </ConfigurationContainer>
     </Container>
   );

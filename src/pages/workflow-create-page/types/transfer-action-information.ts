@@ -1,10 +1,9 @@
-import { NumberAsString } from 'types';
-
 interface TransferActionInformation {
   app?: string;
-  network?: NumberAsString;
-  contractAddress?: string;
-  event?: string;
+  wallet?: string;
+  token?: string;
+  destination?: string;
+  amount?: string;
 }
 
 export default TransferActionInformation;
