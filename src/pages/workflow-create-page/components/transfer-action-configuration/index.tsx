@@ -69,11 +69,13 @@ const ButtonHeading = styled(Subheading)`
 interface TransferActionConfigurationProps {
   transferActionInformation: TransferActionInformation;
   setTransferActionInformation: (transferActionInformation: TransferActionInformation) => void;
+  walletOptions: any;
 }
 
 function TransferActionConfiguration({
   transferActionInformation,
   setTransferActionInformation,
+  walletOptions,
 }: TransferActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
   const [screeningDate, setScreeningDate] = useState('');
@@ -237,8 +239,8 @@ function TransferActionConfiguration({
             <ButtonContainer>
               <Subheading variant="regular" text="Destination" />
               <VerticalSpace size="S" />
-              <Input
-                type="text"
+              <Selector
+                options={walletOptions}
                 placeholder="Add Destination"
                 value={transferActionInformation.destination}
                 onChange={(event: any) => {
@@ -348,8 +350,8 @@ function TransferActionConfiguration({
           <ButtonContainer>
             <Subheading variant="regular" text="Wallet" />
             <VerticalSpace size="S" />
-            <Input
-              type="text"
+            <Selector
+              options={walletOptions}
               placeholder="Add Wallet"
               value={transferActionInformation.wallet}
               onChange={(event: any) => {

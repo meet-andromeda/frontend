@@ -69,11 +69,13 @@ const ButtonHeading = styled(Subheading)`
 interface MintActionConfigurationProps {
   mintActionInformation: MintActionInformation;
   setMintActionInformation: (MintActionInformation: MintActionInformation) => void;
+  walletOptions: any;
 }
 
 function MintActionConfiguration({
   mintActionInformation,
   setMintActionInformation,
+  walletOptions,
 }: MintActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
   const [screeningDate, setScreeningDate] = useState('');
@@ -241,8 +243,8 @@ function MintActionConfiguration({
               <ButtonContainer>
                 <Subheading variant="regular" text="Wallet" />
                 <VerticalSpace size="S" />
-                <Input
-                  type="text"
+                <Selector
+                  options={walletOptions}
                   placeholder="Add Wallet"
                   value={mintActionInformation.wallet}
                   onChange={(event: any) => {
@@ -281,8 +283,8 @@ function MintActionConfiguration({
               <ButtonContainer>
                 <Subheading variant="regular" text="Destination" />
                 <VerticalSpace size="S" />
-                <Input
-                  type="text"
+                <Selector
+                  options={walletOptions}
                   placeholder="Add Destination"
                   value={mintActionInformation.destination}
                   onChange={(event: any) => {

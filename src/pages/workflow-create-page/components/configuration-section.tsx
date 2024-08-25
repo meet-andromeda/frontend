@@ -29,6 +29,7 @@ const Logo = styled('img')`
 
 interface ConfigurationSectionProps {
   nodeId?: string;
+  walletOptions: any;
   triggerInformation: TriggerInformation;
   mintActionInformation: MintActionInformation;
   transferActionInformation: TransferActionInformation;
@@ -45,6 +46,7 @@ interface ConfigurationSectionProps {
 
 function ConfigurationSection({
   nodeId,
+  walletOptions,
   triggerInformation,
   mintActionInformation,
   transferActionInformation,
@@ -78,6 +80,7 @@ function ConfigurationSection({
   if (nodeId === '1') {
     return (
       <MintActionConfiguration
+        walletOptions={walletOptions}
         mintActionInformation={mintActionInformation}
         setMintActionInformation={setMintActionInformation}
       />
@@ -87,6 +90,7 @@ function ConfigurationSection({
   if (nodeId === '2') {
     return (
       <TransferActionConfiguration
+        walletOptions={walletOptions}
         transferActionInformation={transferActionInformation}
         setTransferActionInformation={setTransferActionInformation}
       />

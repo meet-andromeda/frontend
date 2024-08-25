@@ -13,6 +13,8 @@ import {
 } from './types';
 import { useIsAdmin } from 'web3/andromeda-peripherals';
 import ButtonAppBar from './components/app-bar';
+import useGetUserData from 'hooks/use-get-user-data';
+import shortenAddress from 'web3/helpers/shorten-address';
 
 const Container = styled('div')`
   display: flex;
@@ -42,6 +44,10 @@ function WorkflowCreatePage(): JSX.Element {
     address,
   } = useAccount();
 
+  const { circleUserAddress } = useGetUserData(
+    address || '',
+  );
+
   const { isAdmin, isLoading } = useIsAdmin({ userAddress: address });
   let banner = null;
   if (isLoading) {
@@ -60,16 +66,34 @@ function WorkflowCreatePage(): JSX.Element {
     );
   }
 
+  const walletOptions = [
+    {
+      value: `${shortenAddress(circleUserAddress || '')} | Acme Wallet | Wallet | System`,
+      label: `${shortenAddress(circleUserAddress || '')} | Acme Wallet | Wallet | System`,
+    },
+    {
+      value: '0x523c...b4f2 | User address | Tenderly | Trigger ',
+      label: '0x523c...b4f2 | User address | Tenderly | Trigger ',
+    },
+    {
+      value: 'Enter Custom...',
+      label: 'Enter Custom...',
+    },
+  ];
+
   return (
     <StyledBox>
       {banner}
-      <ButtonAppBar />
+      <ButtonAppBar
+        circleUserAddress={circleUserAddress}
+      />
       <Container>
         <WorkflowMap
           setNodeId={setNodeId}
         />
         <ConfigurationSection
           nodeId={nodeId}
+          walletOptions={walletOptions}
           triggerInformation={triggerInformation}
           setTriggerInformation={setTriggerInformation}
           mintActionInformation={mintActionInformation}
