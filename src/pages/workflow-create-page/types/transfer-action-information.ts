@@ -7,7 +7,7 @@ interface TransferActionInformation {
   token?: string;
   destination?: string;
   amount?: string;
-  testWithGoPlus?: boolean;
+  testWithGoPlus?: string;
 }
 
 export default TransferActionInformation;
