@@ -93,7 +93,7 @@ function ConfigurationSection({
     );
   }
 
-  if (nodeId === '1000') {
+  if (nodeId === '4') {
     return (
       <SimulationActionConfiguration
         simulationActionInformation={simulationActionInformation}
