@@ -78,9 +78,7 @@ function TransferActionConfiguration({
   walletOptions,
 }: TransferActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
-  const [screeningDate, setScreeningDate] = useState('');
   const [simulationDate, setSimulationDate] = useState('');
-  const [screeningState, setScreeningState] = useState<'active' | 'loading'>('active');
   const [simulationState, setSimulationState] = useState<'active' | 'loading'>('active');
 
   const networkOptions = [
@@ -160,27 +158,6 @@ function TransferActionConfiguration({
           <VerticalSpace
             size="XL"
           />
-          <StyledButton
-            state={screeningState}
-            onClick={() => {
-              setScreeningState('loading');
-              setTimeout(() => {
-                const currentDate = new Date();
-                const niceFormat = currentDate.toLocaleDateString('en-CA');
-                setScreeningDate(niceFormat);
-                setScreeningState('active');
-              }, 2000);
-            }}
-          >
-            Screen with GoPlus+
-          </StyledButton>
-          { screeningDate && (
-          <div style={{ textAlign: 'right' }}>
-            Last Run:
-            {' '}
-            {screeningDate}
-          </div>
-          )}
           <VerticalSpace size="XL" />
           <StyledButton
             state={simulationState}
@@ -194,14 +171,14 @@ function TransferActionConfiguration({
               }, 2000);
             }}
           >
-            Simulate with Tenderly
+            Test
           </StyledButton>
           {simulationDate
               && (
                 <div style={{ textAlign: 'right' }}>
-                  Last Run:
+                  ✔ Last Run:
                   {' '}
-                  {simulationDate}
+                  Less than one minute ago
                 </div>
               )}
         </ConfigurationContainer>
