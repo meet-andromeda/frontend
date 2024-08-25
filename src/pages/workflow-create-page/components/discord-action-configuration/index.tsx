@@ -99,6 +99,29 @@ function DiscordActionConfiguration({
     },
   ];
 
+  const message2Options = [
+    {
+      value: '0xAdf...aaEEF | User Address | Tenderly | Trigger',
+      label: '0xAdf...aaEEF | User Address | Tenderly | Trigger',
+    },
+    {
+      value: '0xAdf...aaEEF | Destination | Smart Contract | Action',
+      label: '0xAdf...aaEEF | Destination | Smart Contract | Action',
+    },
+    {
+      value: '0xAdf...aaEEF | Wallet | Token Transfer | Action',
+      label: '0xAdf...aaEEF | Wallet | Token Transfer | Action',
+    },
+  ];
+
+  if (discordActionInformation.message1 && discordActionInformation.message2) {
+    return (
+      <div>
+        TEST
+      </div>
+    );
+  }
+
   if (discordActionInformation.account) {
     return (
       <Container>
@@ -148,13 +171,24 @@ function DiscordActionConfiguration({
             <VerticalSpace size="S" />
             <Input
               type="text"
-              value={discordActionInformation.message}
+              value={discordActionInformation.message1}
               onChange={(event) => {
                 setDiscordActionInformation({
                   ...discordActionInformation,
-                  message: (event.target.value),
+                  message1: (event.target.value),
                 });
               }}
+            />
+            <VerticalSpace size="S" />
+            <Selector
+              options={message2Options}
+              onChange={(event: any) => {
+                setDiscordActionInformation({
+                  ...discordActionInformation,
+                  message2: event.target.value || '' as string,
+                });
+              }}
+              placeholder={discordActionInformation.event || 'Select Event'}
             />
           </ButtonContainer>
           )
