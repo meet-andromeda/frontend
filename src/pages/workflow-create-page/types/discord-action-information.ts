@@ -4,7 +4,8 @@ interface DiscordActionInformation {
   account?: string;
   channel?: string;
   botName?: string;
-  message?: string;
+  message1?: string;
+  message2?: string;
 }
 
 export default DiscordActionInformation;
