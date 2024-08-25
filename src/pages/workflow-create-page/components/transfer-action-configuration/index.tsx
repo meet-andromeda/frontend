@@ -121,7 +121,7 @@ function TransferActionConfiguration({
               onClick={() => {}}
               sx={{ height: '50px' }}
             >
-              <ButtonTitle text="Token transfer by Andromeda" variant="medium" />
+              <ButtonTitle text="Token Transfer" variant="medium" />
             </ButtonCard>
           </ButtonContainer>
           <VerticalSpace size="XL" />

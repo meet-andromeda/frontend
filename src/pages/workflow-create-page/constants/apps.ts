@@ -84,23 +84,23 @@ const dev1Apps = [
 
 const dev2Apps = [
   {
-    name: 'Webhooks by Andromeda',
+    name: 'Webhooks',
     logo: defaultLogo,
   },
   {
-    name: 'Token transfer by Andromeda',
+    name: 'Token Transfer',
     logo: andromedaLogo,
   },
   {
-    name: 'Smart Contract by Andromeda',
+    name: 'Smart Contract',
     logo: andromedaLogo,
   },
   {
-    name: 'ERC-20 by Andromeda',
+    name: 'ERC-20',
     logo: andromedaLogo,
   },
   {
-    name: 'ERC-721 by Andromeda',
+    name: 'ERC-721',
     logo: andromedaLogo,
   },
 ];

@@ -72,12 +72,12 @@ function TriggerConfiguration({
 
   const eventOptions = [
     {
-      value: 'Airdrop requested',
-      label: 'Airdrop requested',
+      value: 'Hello World',
+      label: 'Hello World',
     },
     {
-      value: 'Transaction signed',
-      label: 'Transaction signed',
+      value: 'Transaction Signed',
+      label: 'Transaction Signed',
     },
   ];
 
