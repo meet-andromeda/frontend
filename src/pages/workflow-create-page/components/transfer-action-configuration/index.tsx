@@ -39,7 +39,7 @@ const Header = styled('div')`
 `;
 
 const ConfigurationContainer = styled('div')`
-  padding: 2rem 4rem;
+  padding: 8rem 4rem;
   display: flex;
   flex-direction: column;
 `;
