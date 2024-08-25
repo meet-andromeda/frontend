@@ -104,6 +104,204 @@ function MintActionConfiguration({
     },
   ];
 
+  if (showTest) {
+    return (
+      <Container>
+        <Header>
+          <Subheading variant="regular" text="⚡️ New Action" />
+          <Body variant="regular" text="SETUP > CONFIGURE > TEST" />
+        </Header>
+        <HorizontalDivider />
+        <ConfigurationContainer>
+          <ButtonContainer>
+            <Subheading variant="regular" text="Event" />
+            <VerticalSpace size="S" />
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonTitle text="Mint (write)" variant="medium" />
+            </ButtonCard>
+          </ButtonContainer>
+          <VerticalSpace size="XL" />
+          <ButtonContainer>
+            <Subheading variant="regular" text="Test" />
+            <VerticalSpace size="S" />
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonHeading text="Contract" variant="medium" />
+              <ButtonTitle text={mintActionInformation.contractAddress} variant="medium" />
+            </ButtonCard>
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonHeading text="Event" variant="medium" />
+              <ButtonTitle text={mintActionInformation.event} variant="medium" />
+            </ButtonCard>
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonHeading text="Destination" variant="medium" />
+              <ButtonTitle text={mintActionInformation.destination} variant="medium" />
+            </ButtonCard>
+          </ButtonContainer>
+          <VerticalSpace
+            size="XL"
+          />
+          <StyledButton
+            state={screeningState}
+            onClick={() => {
+              setScreeningState('loading');
+              setTimeout(() => {
+                const currentDate = new Date();
+                const niceFormat = currentDate.toLocaleDateString('en-CA');
+                setScreeningDate(niceFormat);
+                setScreeningState('active');
+              }, 2000);
+            }}
+          >
+            Screen with GoPlus+
+          </StyledButton>
+          { screeningDate && (
+            <div style={{ textAlign: 'right' }}>
+              Last Run:
+              {' '}
+              {screeningDate}
+            </div>
+          )}
+          <VerticalSpace size="XL" />
+          <StyledButton
+            state={simulationState}
+            onClick={() => {
+              setSimulationState('loading');
+              setTimeout(() => {
+                const currentDate = new Date();
+                const niceFormat = currentDate.toLocaleDateString('en-CA');
+                setSimulationDate(niceFormat);
+                setSimulationState('active');
+              }, 2000);
+            }}
+          >
+            Simulate With Tenderly
+          </StyledButton>
+          {simulationDate
+            && (
+              <div style={{ textAlign: 'right' }}>
+                Last Run:
+                {' '}
+                {simulationDate}
+              </div>
+            )}
+        </ConfigurationContainer>
+      </Container>
+    );
+  }
+
+  if (mintActionInformation.event) {
+    return (
+      <Container>
+        <Header>
+          <Subheading variant="regular" text="⚡️ New Action" />
+          <Body variant="regular" text="SETUP > CONFIGURE > TEST" />
+        </Header>
+        <HorizontalDivider />
+        <ConfigurationContainer>
+          <ButtonContainer>
+            <Subheading variant="regular" text="Method" />
+            <VerticalSpace size="S" />
+            <Selector
+              options={eventOptions}
+              onChange={(event) => {
+                const network = event.target.value || '';
+                setMintActionInformation({
+                  ...mintActionInformation,
+                  event: network as string,
+                });
+              }}
+              placeholder={mintActionInformation.event || 'Select Event'}
+            />
+          </ButtonContainer>
+          <VerticalSpace size="XL" />
+          {
+            mintActionInformation.event && (
+              <ButtonContainer>
+                <Subheading variant="regular" text="Wallet" />
+                <VerticalSpace size="S" />
+                <Input
+                  type="text"
+                  placeholder="Add Wallet"
+                  value={mintActionInformation.wallet}
+                  onChange={(event: any) => {
+                    setMintActionInformation({
+                      ...mintActionInformation,
+                      wallet: (event.target.value),
+                    });
+                  }}
+                />
+              </ButtonContainer>
+            )
+          }
+          <VerticalSpace size="XL" />
+          {
+            mintActionInformation.wallet && (
+              <ButtonContainer>
+                <Subheading variant="regular" text="Chainlink Vrf Multiplier" />
+                <VerticalSpace size="S" />
+                <Input
+                  type="text"
+                  placeholder="Add Amount"
+                  value={mintActionInformation.chainlinkVrfMultiplier}
+                  onChange={(event: any) => {
+                    setMintActionInformation({
+                      ...mintActionInformation,
+                      chainlinkVrfMultiplier: (event.target.value),
+                    });
+                  }}
+                />
+              </ButtonContainer>
+            )
+          }
+          <VerticalSpace size="XL" />
+          {
+            mintActionInformation.chainlinkVrfMultiplier && (
+              <ButtonContainer>
+                <Subheading variant="regular" text="Destination" />
+                <VerticalSpace size="S" />
+                <Input
+                  type="text"
+                  placeholder="Add Destination"
+                  value={mintActionInformation.destination}
+                  onChange={(event: any) => {
+                    setMintActionInformation({
+                      ...mintActionInformation,
+                      destination: (event.target.value),
+                    });
+                  }}
+                />
+              </ButtonContainer>
+            )
+          }
+          <VerticalSpace size="XL" />
+          {
+            mintActionInformation.destination && (
+              <StyledButton
+                onClick={() => {
+                  setShowTest(true);
+                }}
+              >
+                <Typography>Test</Typography>
+              </StyledButton>
+            )
+          }
+        </ConfigurationContainer>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <Header>
@@ -112,27 +310,25 @@ function MintActionConfiguration({
       </Header>
       <HorizontalDivider />
       <ConfigurationContainer>
-        {!showTest ? (
-          <>
-            <ButtonContainer>
-              <Subheading variant="regular" text="App" />
-              <VerticalSpace size="S" />
-              <ButtonCard onClick={() => {
-                showModal({
-                  component: <AppNameSelection
-                    hideModal={hideModal}
-                    mintActionInformation={mintActionInformation}
-                    setMintActionInformation={setMintActionInformation}
-                  />,
-                });
-              }}
-              >
-                <ButtonTitle text={mintActionInformation.app || 'Select App'} variant="medium" />
-                <ChevronDownIcon />
-              </ButtonCard>
-            </ButtonContainer>
-            <VerticalSpace size="XL" />
-            {
+        <ButtonContainer>
+          <Subheading variant="regular" text="App" />
+          <VerticalSpace size="S" />
+          <ButtonCard onClick={() => {
+            showModal({
+              component: <AppNameSelection
+                hideModal={hideModal}
+                mintActionInformation={mintActionInformation}
+                setMintActionInformation={setMintActionInformation}
+              />,
+            });
+          }}
+          >
+            <ButtonTitle text={mintActionInformation.app || 'Select App'} variant="medium" />
+            <ChevronDownIcon />
+          </ButtonCard>
+        </ButtonContainer>
+        <VerticalSpace size="XL" />
+        {
           mintActionInformation.app && (
           <ButtonContainer>
             <Subheading variant="regular" text="Network" />
@@ -151,8 +347,8 @@ function MintActionConfiguration({
           </ButtonContainer>
           )
         }
-            <VerticalSpace size="XL" />
-            {
+        <VerticalSpace size="XL" />
+        {
           mintActionInformation.network && (
           <ButtonContainer>
             <Subheading variant="regular" text="Contract Address" />
@@ -186,8 +382,8 @@ function MintActionConfiguration({
           </ButtonContainer>
           )
         }
-            <VerticalSpace size="XL" />
-            {
+        <VerticalSpace size="XL" />
+        {
           mintActionInformation.contractAddress && mintActionInformation.abiDecoded && (
           <ButtonContainer>
             <Subheading variant="regular" text="Method" />
@@ -206,109 +402,9 @@ function MintActionConfiguration({
           </ButtonContainer>
           )
         }
-            <VerticalSpace
-              size="XL"
-            />
-            {
-              mintActionInformation.event && (
-                <StyledButton
-                  onClick={() => {
-                    setShowTest(true);
-                  }}
-                >
-                  <Typography>Test</Typography>
-                </StyledButton>
-              )
-            }
-          </>
-        ) : (
-          <>
-            <ButtonContainer>
-              <Subheading variant="regular" text="Event" />
-              <VerticalSpace size="S" />
-              <ButtonCard
-                onClick={() => {}}
-                sx={{ height: '50px' }}
-              >
-                <ButtonTitle text="Mint (write)" variant="medium" />
-              </ButtonCard>
-            </ButtonContainer>
-            <VerticalSpace size="XL" />
-            <ButtonContainer>
-              <Subheading variant="regular" text="Test" />
-              <VerticalSpace size="S" />
-              <ButtonCard
-                onClick={() => {}}
-                sx={{ height: '50px' }}
-              >
-                <ButtonHeading text="Contract" variant="medium" />
-                <ButtonTitle text={mintActionInformation.contractAddress} variant="medium" />
-              </ButtonCard>
-              <ButtonCard
-                onClick={() => {}}
-                sx={{ height: '50px' }}
-              >
-                <ButtonHeading text="Event" variant="medium" />
-                <ButtonTitle text={mintActionInformation.event} variant="medium" />
-              </ButtonCard>
-              <ButtonCard
-                onClick={() => {}}
-                sx={{ height: '50px' }}
-              >
-                <ButtonHeading text="Destination" variant="medium" />
-                <ButtonTitle text={mintActionInformation.contractAddress} variant="medium" />
-              </ButtonCard>
-            </ButtonContainer>
-            <VerticalSpace
-              size="XL"
-            />
-            <StyledButton
-              state={screeningState}
-              onClick={() => {
-                setScreeningState('loading');
-                setTimeout(() => {
-                  const currentDate = new Date();
-                  const niceFormat = currentDate.toLocaleDateString('en-CA');
-                  setScreeningDate(niceFormat);
-                  setScreeningState('active');
-                }, 2000);
-              }}
-            >
-              Screen with GoPlus+
-            </StyledButton>
-            { screeningDate && (
-            <div style={{ textAlign: 'right' }}>
-              Last Run:
-              {' '}
-              {screeningDate}
-            </div>
-            )}
-            <VerticalSpace size="XL" />
-            <StyledButton
-              state={simulationState}
-              onClick={() => {
-                setSimulationState('loading');
-                setTimeout(() => {
-                  const currentDate = new Date();
-                  const niceFormat = currentDate.toLocaleDateString('en-CA');
-                  setSimulationDate(niceFormat);
-                  setSimulationState('active');
-                }, 2000);
-              }}
-            >
-              Simulate With Tenderly
-            </StyledButton>
-            {simulationDate
-              && (
-                <div style={{ textAlign: 'right' }}>
-                  Last Run:
-                  {' '}
-                  {simulationDate}
-                </div>
-              )}
-          </>
-        )}
-
+        <VerticalSpace
+          size="XL"
+        />
       </ConfigurationContainer>
     </Container>
   );

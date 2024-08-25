@@ -7,6 +7,9 @@ interface MintActionInformation {
   event?: string;
   decodingAbi?: boolean;
   abiDecoded?: boolean;
+  wallet?: string;
+  chainlinkVrfMultiplier?: string;
+  destination?: string;
 }
 
 export default MintActionInformation;

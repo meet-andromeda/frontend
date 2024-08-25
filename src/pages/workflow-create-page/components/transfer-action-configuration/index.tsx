@@ -321,7 +321,7 @@ function TransferActionConfiguration({
                   }, 2000);
                 }}
               >
-                Simulate With Tenderly
+                Simulate with Tenderly
               </StyledButton>
               {simulationDate
               && (
