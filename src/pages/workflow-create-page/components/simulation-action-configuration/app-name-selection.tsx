@@ -53,6 +53,7 @@ const Card = styled(ListCard)`
 
 const Logo = styled('img')`
   width: 1rem;
+  height: 1rem;
   margin: 0;
   padding: 0;  
 `;

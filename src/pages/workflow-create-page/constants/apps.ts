@@ -1,23 +1,33 @@
 import defaultLogo from 'assets/images/default-logo.svg';
 import andromedaLogo from 'assets/images/andromeda-logo.svg';
 import discordLogo from 'assets/images/discord-logo.svg';
+import googleDriveLogo from 'assets/images/google-drive-logo.svg';
+import googleSheetsLogo from 'assets/images/google-sheets-logo.svg';
+import xLogo from 'assets/images/x-logo.svg';
+import facebookLogo from 'assets/images/facebook-logo.svg';
+import plaidLogo from 'assets/images/plaid-logo.svg';
+import segmentLogo from 'assets/images/segment-logo.svg';
+import customerIoLogo from 'assets/images/customer-io-logo.svg';
+import oneInchLogo from 'assets/images/1inch-logo.svg';
+import aveLogo from 'assets/images/ave-logo.svg';
+import alchemyLogo from 'assets/images/alchemy-logo.svg';
 
 const web2Apps = [
   {
     name: 'Google Drive',
-    logo: defaultLogo,
+    logo: googleDriveLogo,
   },
   {
     name: 'Google Sheets',
-    logo: defaultLogo,
+    logo: googleSheetsLogo,
   },
   {
     name: 'Facebook',
-    logo: defaultLogo,
+    logo: facebookLogo,
   },
   {
     name: 'X (Twitter)',
-    logo: defaultLogo,
+    logo: xLogo,
   },
   {
     name: 'Discord',
@@ -25,26 +35,26 @@ const web2Apps = [
   },
   {
     name: 'Plaid',
-    logo: defaultLogo,
+    logo: plaidLogo,
   },
   {
     name: 'Segment',
-    logo: defaultLogo,
+    logo: segmentLogo,
   },
   {
     name: 'Customer-io',
-    logo: defaultLogo,
+    logo: customerIoLogo,
   },
 ];
 
 const web3Apps = [
   {
     name: '1-inch',
-    logo: defaultLogo,
+    logo: oneInchLogo,
   },
   {
     name: 'Aave',
-    logo: defaultLogo,
+    logo: aveLogo,
   },
   {
     name: 'Compound',
@@ -63,7 +73,7 @@ const web3Apps = [
 const dev1Apps = [
   {
     name: 'Alchemy by Andromeda',
-    logo: defaultLogo,
+    logo: alchemyLogo,
   },
   {
     name: 'Tenderly by Andromeda',
