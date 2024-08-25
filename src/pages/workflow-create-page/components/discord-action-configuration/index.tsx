@@ -62,8 +62,24 @@ function DiscordActionConfiguration({
 
   const eventOptions = [
     {
-      value: 'Send channel message',
-      label: 'Send channel message',
+      value: 'Send Channel Message',
+      label: 'Send Channel Message',
+    },
+    {
+      value: 'Add Role',
+      label: 'Add Role',
+    },
+    {
+      value: 'Create new Forum Post',
+      label: 'Create new Forum Post',
+    },
+    {
+      value: 'Rename Channel',
+      label: 'Rename Channel',
+    },
+    {
+      value: 'Send Direct Message',
+      label: 'Send Direct Message',
     },
   ];
 
