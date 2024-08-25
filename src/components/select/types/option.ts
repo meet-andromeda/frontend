@@ -1,5 +1,5 @@
 interface Option {
-  value: string | boolean;
+  value: string;
   label: string;
   component?: JSX.Element;
   selectedComponent?: JSX.Element;

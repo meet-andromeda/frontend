@@ -107,11 +107,11 @@ function MintActionConfiguration({
 
   const testWithGoPlusOptions = [
     {
-      value: true,
+      value: 'true',
       label: 'True',
     },
     {
-      value: false,
+      value: 'false',
       label: 'False',
     },
   ];
