@@ -33,9 +33,6 @@ const StyledLoadingButton = styled(LoadingButton)`
   width: 100%;
   height: 2.75rem;
   background-color: ${(props) => props.theme.palette.primary.light};
-  box-shadow: 0.25rem 0.25rem 0 0 ${(props) => props.theme.palette.outlines.dark};
-  border: 0.0625rem solid ${(props) => props.theme.palette.outlines.dark};
-  border-radius: 0.625rem;
 
   & .MuiLoadingButton-loadingIndicator {
     color: ${(props) => props.theme.palette.primary.light};
