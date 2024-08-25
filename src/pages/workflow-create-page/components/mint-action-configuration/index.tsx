@@ -314,7 +314,7 @@ function MintActionConfiguration({
                       testWithGoPlus: test as string,
                     });
                   }}
-                  placeholder={mintActionInformation.testWithGoPlus || 'Test with GoPLus'}
+                  placeholder={mintActionInformation.testWithGoPlus || 'Select'}
                 />
               </ButtonContainer>
             )
