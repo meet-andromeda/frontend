@@ -85,7 +85,7 @@ function TriggerConfiguration({
     <Container>
       <Header>
         <Subheading variant="regular" text="New Trigger" />
-        <Body variant="regular" text="SETUP > CONFIGURE > TEST" />
+        <Body variant="regular" text="" />
       </Header>
       <HorizontalDivider />
       <ConfigurationContainer>
