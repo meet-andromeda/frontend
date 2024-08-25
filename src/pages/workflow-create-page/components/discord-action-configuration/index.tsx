@@ -28,7 +28,7 @@ const Header = styled('div')`
 `;
 
 const ConfigurationContainer = styled('div')`
-  padding: 3rem;
+  padding: 8rem 4rem;
   display: flex;
   flex-direction: column;
 `;
@@ -116,9 +116,15 @@ function DiscordActionConfiguration({
 
   if (discordActionInformation.message1 && discordActionInformation.message2) {
     return (
-      <div>
-        TEST
-      </div>
+      <Container>
+        <Header>
+          <Subheading variant="regular" text="⚡️ New Action" />
+          <Body variant="regular" text="setup > configure > TEST" />
+        </Header>
+        <HorizontalDivider />
+        <ConfigurationContainer />
+      </Container>
+
     );
   }
 
