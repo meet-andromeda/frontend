@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { useAccount, useBalance } from 'wagmi';
 import shortenAddress from 'web3/helpers/shorten-address';
-// import useGetUserData from 'hooks/use-get-user-data';
+import useGetUserData from 'hooks/use-get-user-data';
 import { HorizontalSpace } from 'components/spacing';
 import useGetErc20Balance from 'hooks/use-get-erc20-balance';
 
@@ -21,22 +21,32 @@ const StyledButton = styled(Button)({
   width: '150px',
 });
 
+const StyledCircleWalletButton = styled(Button)({
+  marginLeft: '10px',
+  backgroundColor: '#3D4E6A',
+  color: 'white',
+  '&:hover': {
+    backgroundColor: '#3D4E6A',
+  },
+  width: '250px',
+});
+
 export default function ButtonAppBar(): any {
   const {
     address,
   } = useAccount();
-  /* const data = useGetUserData(
+  const { circleUserAddress } = useGetUserData(
     address || '',
-  ); */
+  );
 
   const {
     balance,
   } = useGetErc20Balance({
-    userAddress: address,
+    userAddress: circleUserAddress,
   });
 
   const { data: balanceDatas } = useBalance({
-    address,
+    address: circleUserAddress,
   });
 
   const formattedMaticBalance = Number(balanceDatas?.value) / (10 ** 18);
@@ -70,11 +80,13 @@ export default function ButtonAppBar(): any {
             {' '}
             MATIC
           </Typography>
-          <StyledButton
-            onClick={() => window.open(`https://polygonscan.com/address/${address}`, '_blank')}
+          <StyledCircleWalletButton
+            onClick={() => window.open(`https://polygonscan.com/address/${circleUserAddress}`, '_blank')}
           >
-            {shortenAddress(address || '')}
-          </StyledButton>
+            Circle 💳
+            {' '}
+            {shortenAddress(circleUserAddress || '')}
+          </StyledCircleWalletButton>
         </Toolbar>
       </AppBar>
     </Box>
