@@ -109,7 +109,7 @@ function MintActionConfiguration({
       <Container>
         <Header>
           <Subheading variant="regular" text="⚡️ New Action" />
-          <Body variant="regular" text="SETUP > CONFIGURE > TEST" />
+          <Body variant="regular" text="setup > configure > TEST" />
         </Header>
         <HorizontalDivider />
         <ConfigurationContainer>
@@ -206,7 +206,7 @@ function MintActionConfiguration({
       <Container>
         <Header>
           <Subheading variant="regular" text="⚡️ New Action" />
-          <Body variant="regular" text="SETUP > CONFIGURE > TEST" />
+          <Body variant="regular" text="setup > CONFIGURE > test" />
         </Header>
         <HorizontalDivider />
         <ConfigurationContainer>
@@ -306,7 +306,7 @@ function MintActionConfiguration({
     <Container>
       <Header>
         <Subheading variant="regular" text="⚡️ New Action" />
-        <Body variant="regular" text="SETUP > CONFIGURE > TEST" />
+        <Body variant="regular" text="SETUP > configure > test" />
       </Header>
       <HorizontalDivider />
       <ConfigurationContainer>
