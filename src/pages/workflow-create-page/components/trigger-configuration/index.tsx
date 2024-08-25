@@ -128,62 +128,62 @@ function TriggerConfiguration({
         }
         <VerticalSpace size="XL" />
         {
-  triggerInformation.network && (
-    <ButtonContainer>
-      <Subheading variant="regular" text="Contract Address" />
-      <VerticalSpace size="S" />
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Input
-          type="text"
-          value={triggerInformation.contractAddress}
-          onChange={(event) => {
-            setTriggerInformation({
-              ...triggerInformation,
-              contractAddress: (event.target.value),
-              decodingAbi: true,
-            });
+          triggerInformation.network && (
+            <ButtonContainer>
+              <Subheading variant="regular" text="Contract Address" />
+              <VerticalSpace size="S" />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <Input
+                  type="text"
+                  value={triggerInformation.contractAddress}
+                  onChange={(event) => {
+                    setTriggerInformation({
+                      ...triggerInformation,
+                      contractAddress: (event.target.value),
+                      decodingAbi: true,
+                      abiDecoded: false,
+                    });
 
-            setTimeout(() => {
-              setTriggerInformation({
-                ...triggerInformation,
-                abiDecoded: true,
-              });
-            }, 2000);
-          }}
-        />
-        {triggerInformation.decodingAbi && (
-          <Typography style={{ marginLeft: 10 }}>
-            {triggerInformation.abiDecoded ? 'ABI Decoded' : 'ABI Decoding'}
-          </Typography>
-        )}
-      </div>
-    </ButtonContainer>
-  )
-}
-
+                    setTimeout(() => {
+                      setTriggerInformation({
+                        ...triggerInformation,
+                        contractAddress: (event.target.value),
+                        abiDecoded: true,
+                      });
+                    }, 2000);
+                  }}
+                />
+                {triggerInformation.decodingAbi && (
+                  <Typography style={{ marginLeft: 10 }}>
+                    {triggerInformation.abiDecoded ? 'ABI Decoded' : 'ABI Decoding'}
+                  </Typography>
+                )}
+              </div>
+            </ButtonContainer>
+          )
+        }
         <VerticalSpace size="XL" />
         {
           triggerInformation.contractAddress && triggerInformation.abiDecoded && (
-          <ButtonContainer>
-            <Subheading variant="regular" text="Event" />
-            <VerticalSpace size="S" />
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <Selector
-                options={eventOptions}
-                onChange={(event) => {
-                  const network = event.target.value || '';
-                  setTriggerInformation({
-                    ...triggerInformation,
-                    event: network as string,
-                  });
-                }}
-                placeholder={triggerInformation.event || 'Select Event'}
-              />
-            </div>
-          </ButtonContainer>
-
+            <ButtonContainer>
+              <Subheading variant="regular" text="Event" />
+              <VerticalSpace size="S" />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <Selector
+                  options={eventOptions}
+                  onChange={(event) => {
+                    const network = event.target.value || '';
+                    setTriggerInformation({
+                      ...triggerInformation,
+                      event: network as string,
+                    });
+                  }}
+                  placeholder={triggerInformation.event || 'Select Event'}
+                />
+              </div>
+            </ButtonContainer>
           )
-      }
+        }
       </ConfigurationContainer>
     </Container>
   );
