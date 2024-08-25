@@ -10,6 +10,7 @@ interface MintActionInformation {
   wallet?: string;
   chainlinkVrfMultiplier?: string;
   destination?: string;
+  testWithGoPlus?: boolean;
 }
 
 export default MintActionInformation;

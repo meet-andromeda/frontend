@@ -76,7 +76,6 @@ function MintActionConfiguration({
   setMintActionInformation,
 }: MintActionConfigurationProps): JSX.Element {
   const { showModal, hideModal } = useModalContext();
-  const [showTest, setShowTest] = useState(false);
   const [screeningDate, setScreeningDate] = useState('');
   const [simulationDate, setSimulationDate] = useState('');
   const [screeningState, setScreeningState] = useState<'active' | 'loading'>('active');
@@ -104,7 +103,18 @@ function MintActionConfiguration({
     },
   ];
 
-  if (showTest) {
+  const testWithGoPlusOptions = [
+    {
+      value: true,
+      label: 'True',
+    },
+    {
+      value: false,
+      label: 'False',
+    },
+  ];
+
+  if (mintActionInformation.testWithGoPlus !== undefined) {
     return (
       <Container>
         <Header>
@@ -288,15 +298,24 @@ function MintActionConfiguration({
           <VerticalSpace size="XL" />
           {
             mintActionInformation.destination && (
-              <StyledButton
-                onClick={() => {
-                  setShowTest(true);
-                }}
-              >
-                <Typography>Test</Typography>
-              </StyledButton>
+              <ButtonContainer>
+                <Subheading variant="regular" text="Test with GoPLus" />
+                <VerticalSpace size="S" />
+                <Selector
+                  options={testWithGoPlusOptions}
+                  onChange={(event) => {
+                    const test = event.target.value || true;
+                    setMintActionInformation({
+                      ...mintActionInformation,
+                      testWithGoPlus: test as boolean,
+                    });
+                  }}
+                  placeholder={mintActionInformation.event || 'Select Event'}
+                />
+              </ButtonContainer>
             )
-          }
+            }
+          <VerticalSpace size="XL" />
         </ConfigurationContainer>
       </Container>
     );
