@@ -81,6 +81,72 @@ function DiscordActionConfiguration({
     },
   ];
 
+  if (discordActionInformation.account) {
+    return (
+      <Container>
+        <Header>
+          <Subheading variant="regular" text="⚡️ New Action" />
+          <Body variant="regular" text="setup > CONFIGURE > test" />
+        </Header>
+        <HorizontalDivider />
+        <ConfigurationContainer>
+          <ButtonContainer>
+            <Subheading variant="regular" text="Channel" />
+            <VerticalSpace size="S" />
+            <Selector
+              options={channelOptions}
+              onChange={(event: any) => {
+                setDiscordActionInformation({
+                  ...discordActionInformation,
+                  channel: event.target.value || '' as string,
+                });
+              }}
+              placeholder={discordActionInformation.channel || 'Select Channel'}
+            />
+          </ButtonContainer>
+          <VerticalSpace size="XL" />
+          {
+            discordActionInformation.channel && (
+            <ButtonContainer>
+              <Subheading variant="regular" text="Bot Name" />
+              <VerticalSpace size="S" />
+              <Selector
+                options={botNameOptions}
+                onChange={(event: any) => {
+                  setDiscordActionInformation({
+                    ...discordActionInformation,
+                    botName: event.target.value || '' as string,
+                  });
+                }}
+                placeholder={discordActionInformation.botName || 'Select Bot'}
+              />
+            </ButtonContainer>
+            )
+          }
+          <VerticalSpace size="XL" />
+          {
+          discordActionInformation.botName && (
+          <ButtonContainer>
+            <Subheading variant="regular" text="Message Text" />
+            <VerticalSpace size="S" />
+            <Input
+              type="text"
+              value={discordActionInformation.message}
+              onChange={(event) => {
+                setDiscordActionInformation({
+                  ...discordActionInformation,
+                  message: (event.target.value),
+                });
+              }}
+            />
+          </ButtonContainer>
+          )
+        }
+        </ConfigurationContainer>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <Header>
@@ -158,63 +224,6 @@ function DiscordActionConfiguration({
                   )
               }
             </ButtonContainer>
-          )
-        }
-        <VerticalSpace size="XL" />
-        {
-          discordActionInformation.account && (
-          <ButtonContainer>
-            <Subheading variant="regular" text="Channel" />
-            <VerticalSpace size="S" />
-            <Selector
-              options={channelOptions}
-              onChange={(event: any) => {
-                setDiscordActionInformation({
-                  ...discordActionInformation,
-                  channel: event.target.value || '' as string,
-                });
-              }}
-              placeholder={discordActionInformation.channel || 'Select Channel'}
-            />
-          </ButtonContainer>
-          )
-        }
-        <VerticalSpace size="XL" />
-        {
-          discordActionInformation.channel && (
-          <ButtonContainer>
-            <Subheading variant="regular" text="Bot Name" />
-            <VerticalSpace size="S" />
-            <Selector
-              options={botNameOptions}
-              onChange={(event: any) => {
-                setDiscordActionInformation({
-                  ...discordActionInformation,
-                  botName: event.target.value || '' as string,
-                });
-              }}
-              placeholder={discordActionInformation.botName || 'Select Bot'}
-            />
-          </ButtonContainer>
-          )
-        }
-        <VerticalSpace size="XL" />
-        {
-          discordActionInformation.botName && (
-          <ButtonContainer>
-            <Subheading variant="regular" text="Message Text" />
-            <VerticalSpace size="S" />
-            <Input
-              type="text"
-              value={discordActionInformation.message}
-              onChange={(event) => {
-                setDiscordActionInformation({
-                  ...discordActionInformation,
-                  message: (event.target.value),
-                });
-              }}
-            />
-          </ButtonContainer>
           )
         }
         <VerticalSpace size="XL" />
