@@ -94,11 +94,11 @@ function TransferActionConfiguration({
 
   const testWithGoPlusOptions = [
     {
-      value: 'true',
+      value: 'True',
       label: 'True',
     },
     {
-      value: 'false',
+      value: 'False',
       label: 'False',
     },
   ];
@@ -153,6 +153,13 @@ function TransferActionConfiguration({
             >
               <ButtonHeading text="Amount" variant="medium" />
               <ButtonTitle text={transferActionInformation.amount} variant="medium" />
+            </ButtonCard>
+            <ButtonCard
+              onClick={() => {}}
+              sx={{ height: '50px' }}
+            >
+              <ButtonHeading text="GoPlus Screening" variant="medium" />
+              <ButtonTitle text={transferActionInformation.testWithGoPlus} variant="medium" />
             </ButtonCard>
           </ButtonContainer>
           <VerticalSpace
@@ -254,18 +261,18 @@ function TransferActionConfiguration({
           {
             transferActionInformation.amount && (
               <ButtonContainer>
-                <Subheading variant="regular" text="Test with GoPLus" />
+                <Subheading variant="regular" text="Screen with GoPLus" />
                 <VerticalSpace size="S" />
                 <Selector
                   options={testWithGoPlusOptions}
                   onChange={(event) => {
-                    const test = event.target.value || true;
+                    const test = event.target.value;
                     setTransferActionInformation({
                       ...transferActionInformation,
-                      testWithGoPlus: test as boolean,
+                      testWithGoPlus: test as string,
                     });
                   }}
-                  placeholder={transferActionInformation.testWithGoPlus || 'Test with GoPLus'}
+                  placeholder={transferActionInformation.testWithGoPlus || 'Select'}
                 />
               </ButtonContainer>
             )
